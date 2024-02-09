@@ -1,8 +1,37 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  preload: true,
+  display: "swap",
+});
+
+const jekoFont = localFont({
+  src: "../styles/Jeko-Medium.woff2",
+  variable: "--font-jeko",
+  preload: true,
+  display: "swap",
+});
+
+const jekoBoldFont = localFont({
+  src: "../styles/Jeko-Bold.woff2",
+  variable: "--font-jekobold",
+  preload: true,
+  display: "swap",
+});
+
+const jekoBlackFont = localFont({
+  src: "../styles/Jeko-Black.woff2",
+  variable: "--font-jekoblack",
+  preload: true,
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +45,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.variable} ${jekoBlackFont.variable} ${jekoBoldFont.variable} ${jekoFont.variable}`}>
+        <Header />
+        {children}
+        <Footer />
+        </body>
     </html>
   );
 }

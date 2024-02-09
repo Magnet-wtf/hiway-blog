@@ -1,21 +1,25 @@
-import Link from 'next/link';
+import { use } from 'react';
 
 import wpService from '@/lib/wordpress/wp-service';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { use } from 'react';
+import Link from 'next/link';
+import { PaginationLinks } from '@/app/page';
 
-interface HomePageParams {
-    searchParams: {
-        page?: string;
+interface PostPageParams {
+    params: {
+        page: string;
+        slug: number;
     };
 }
 
-export default function Home({ searchParams }: HomePageParams) {
-    const page = searchParams.page ? parseInt(searchParams.page) : 1;
+function CategoriesPage({ params }: PostPageParams) {
+    const page = params.page ? parseInt(params.page) : 1;
     const { posts, totalPages } = use(wpService.getPosts({ page }));
     const categories = use(wpService.getCategories());
     const tags = use(wpService.getTags());
+
+    const filteredPosts = posts.filter((post) => post.categories?.includes(Number(params.slug)));
 
     const getTitleFirstWord = (title: string) => {
         return title.split(' ')[0];
@@ -24,11 +28,6 @@ export default function Home({ searchParams }: HomePageParams) {
     const getTitleWithoutFirstWord = (title: string) => {
         return title.split(' ').slice(1).join(' ');
     };
-
-    const getCategoryName = (categoryIds: number[]) => {
-        const category = categories.find((category) => category.id === categoryIds[0]);
-        return category ? category.name : '';
-    }
 
     return (
         <div className='w-full'>
@@ -65,7 +64,7 @@ export default function Home({ searchParams }: HomePageParams) {
                     <div className={'flex flex-col mt-12'}>
                         <h1 className={'text-sm font-bold font-jekobold text-[#ff4140] pb-2'}>Tout les sujets</h1>
                         {categories.map((category) => (
-                            <Link key={category.id} href={`/category/${category.id}`} className='text-sm pb-1'>
+                            <Link key={category.id} href={`/categories/${category.slug}`} className='text-sm pb-1'>
                                 {category.name}
                             </Link>
                         ))}
@@ -74,7 +73,7 @@ export default function Home({ searchParams }: HomePageParams) {
                     <div className={'flex flex-col mt-12'}>
                         <h1 className={'text-sm font-jekobold text-[#ff4140] pb-2'}>Toutes les situations</h1>
                         {tags.map((tag) => (
-                            <Link key={tag.id} href={`/tag/${tag.id}`} className='text-sm pb-1'>
+                            <Link key={tag.id} href={`/categories/${tag.slug}`} className='text-sm pb-1'>
                                 {tag.name}
                             </Link>
                         ))}
@@ -112,13 +111,13 @@ export default function Home({ searchParams }: HomePageParams) {
                     </div>
 
                     <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-8'}>
-                        {posts.map((post) => (
+                        {filteredPosts.map((post) => (
                             <div className={'flex flex-col space-y-5 justify-center items-center'} key={post.id}>
                                 <Image src={post.mediaUrl ? post.mediaUrl : '/default-image.png'} alt='post image' width={400} height={400} />
                                 <Link href={`/posts/${post.slug}`} className='w-full text-start'>
                                     <div className='flex flex-col w-full items-start justify-start px-8'>
 
-                                    {post.categories && <h1 className='text-sm text-[#ff4140] text-start'>{getCategoryName(post.categories)}</h1>}
+                                    <h1 className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</h1>
                                     <h1 className='font-black text-lg font-jekoblack text-start'>{post.title.rendered}</h1>
                                     <span>{post.excerpt.protected}</span>
                                     </div>
@@ -134,31 +133,4 @@ export default function Home({ searchParams }: HomePageParams) {
     );
 }
 
-export function PaginationLinks({
-    currentPage,
-    totalPages,
-}: React.PropsWithChildren<{
-    currentPage: number;
-    totalPages: number;
-}>) {
-    const pagesArray = Array(totalPages)
-        .fill(null)
-        .map((_, page) => page + 1);
-
-    return (
-        <div className={'flex space-x-4 w-full items-center justify-center'}>
-            {pagesArray.map((page) => {
-                const isSelected = page === currentPage;
-                const className = isSelected
-                    ? 'font-jekobold bg-[#FF4140] border-[#FF4140] text-white p-4 px-6 rounded-lg'
-                    : 'hover:font-medium border rounded-lg p-4 px-6';
-
-                return (
-                    <Link key={page} className={className} href={`/?page=${page}`}>
-                        {page}
-                    </Link>
-                );
-            })}
-        </div>
-    );
-}
+export default CategoriesPage;
