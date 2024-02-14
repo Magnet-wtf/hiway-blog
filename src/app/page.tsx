@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { use } from 'react';
 import { PaginationLinks } from '@/components/pagination-links';
+import he from 'he';
 
 interface HomePageParams {
     searchParams: {
@@ -104,13 +105,13 @@ export default function Home({ searchParams }: HomePageParams) {
                         key={posts[0].id}
                     >
                         <div className='relative rounded-xl min-w-[50%] h-full'>
-                            <Image src={'/work.png'} alt='post image' width={550} height={350} className='relative rounded-xl h-full' />
+                            <Image src={'/work.png'} alt='post image' width={850} height={650} className='relative rounded-xl h-full' />
                         </div>
                         <div className='ml-8 space-y-4'>
                             <h1 className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</h1>
-                            <h1 className='text-4xl xl:text-5xl font-jekoblack leading-[60px] text-start'>
-                                <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(posts[0].title.rendered)}</span>{' '}
-                                {getTitleWithoutFirstWord(posts[0].title.rendered)}
+                            <h1 className='text-4xl xl:text-5xl 2xl:text-8xl font-jekoblack leading-[60px] text-start'>
+                                <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(he.decode(posts[0].title.rendered))}</span>{' '}
+                                {getTitleWithoutFirstWord(he.decode(posts[0].title.rendered))}
                             </h1>
                             <span>{posts[0].excerpt.protected}</span>
                         </div>
@@ -163,7 +164,7 @@ export default function Home({ searchParams }: HomePageParams) {
                                             {post.categories && (
                                                 <h1 className='text-sm text-[#ff4140] text-start'>{getCategoryName(post.categories)}</h1>
                                             )}
-                                            <h1 className='font-black text-lg font-jekoblack text-start'>{post.title.rendered}</h1>
+                                            <h1 className='font-black text-lg font-jekoblack text-start'>{he.decode(post.title.rendered)}</h1>
                                             <span>{post.excerpt.protected}</span>
                                         </div>
                                     </div>

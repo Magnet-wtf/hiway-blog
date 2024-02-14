@@ -13,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import CTA from '@/components/cta';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import he from 'he';
 
 interface PostPageParams {
     params: {
@@ -48,18 +49,18 @@ function PostPage({ params }: PostPageParams) {
         },
     };
 
-    const parsedContent = post ? parse(post.content.rendered) : null;
+    const parsedContent = post ? parse(he.decode(post.content.rendered)) : null;
 
     if (!post) {
         notFound();
     }
 
     const getTitleFirstWord = (title: string) => {
-        return title.split(' ')[0];
+        return title.split(' ')[0] + ' ' + title.split(' ')[1];
     };
 
     const getTitleWithoutFirstWord = (title: string) => {
-        return title.split(' ').slice(1).join(' ');
+        return title.split(' ').slice(2).join(' ');
     };
 
     return (
@@ -95,20 +96,20 @@ function PostPage({ params }: PostPageParams) {
                         </div>
                     </div>
                 </div>
-                <div className={'flex flex-col space-y-4 px-24 py-12'}>
+                <div className={'flex flex-col w-full justify-center space-y-4 px-24 py-12'}>
                     <div className={'flex flex-col space-y-2'}>
                         <div className='flex space-x-4 mb-4'>
                             {category && <Badge className='bg-[#FDB813] text-black font-jekobold py-2 px-2'>{category?.name}</Badge>}
                             {tag.name && <Badge className='bg-[#FDB813] text-black font-jekobold py-2 px-2'>{tag.name}</Badge>}
                         </div>
                         <h1 className={'text-6xl font-bold max-w-5xl font-jekoblack'}>
-                            <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(post.title.rendered)}</span>{' '}
-                            {getTitleWithoutFirstWord(post.title.rendered)}
+                            <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(he.decode(post.title.rendered))}</span>{' '}
+                            {getTitleWithoutFirstWord(he.decode(post.title.rendered))}
                         </h1>
 
                         <div className='text-[#979797] font-light py-8'>Mis à jour le 12 décembre 2023 | Temps de lecture : X minutes</div>
                     </div>
-                    <div>
+                    <div className='max-w-5xl'>
                         {/* <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} /> */}
                         {parsedContent}
 
