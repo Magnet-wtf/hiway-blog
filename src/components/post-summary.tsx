@@ -14,7 +14,7 @@ export default function PostSummary({ post }: PostSummaryProps) {
         function searchHeadings(node: Node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
                 const element = node as HTMLElement;
-                if (['H1', 'H2', 'H3', 'H4'].includes(element.tagName)) {
+                if (['H2'].includes(element.tagName)) {
                     summary.push(`${element.textContent || ''}`);
                 }
                 element.childNodes.forEach(searchHeadings);
