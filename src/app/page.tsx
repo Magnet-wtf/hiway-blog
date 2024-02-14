@@ -134,7 +134,7 @@ export default function Home({ searchParams }: HomePageParams) {
                                                 className='rounded-xl pb-8'
                                             />
                                             <h1 className='text-2xl font-bold font-jekobold pb-4 text-center px-8'>
-                                                La meilleure expérience pour{' '}
+                                                La meilleure expérience pour{' '} <br />
                                                 <span className='text-[#ff4140] font-jekobold'>devenir freelance</span>
                                             </h1>
                                             <Image src={'/laptop.png'} alt='post image' width={150} height={150} className='rounded-xl' />
