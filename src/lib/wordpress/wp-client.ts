@@ -7,7 +7,7 @@ const API_VERSION = process.env.WORDPRESS_API_VERSION ?? "v2";
 const BASE_URL = `${API_BASE_URL}/wp/${API_VERSION}/`;
  
 const DEFAULT_POSTS_PARAMS = {
-  per_page: 9,
+  per_page: 8,
   page: 1,
   search: "",
   slug: <string[]>[],

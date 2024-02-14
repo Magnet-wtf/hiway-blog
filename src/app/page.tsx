@@ -117,33 +117,59 @@ export default function Home({ searchParams }: HomePageParams) {
                     </Link>
 
                     <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8 xl:gap-12 w-full p-8 xl:p-12'}>
-                        {posts.map((post) => (
-                            <Link
-                                href={`/posts/${post.slug}`}
-                                className={'flex flex-col space-y-5 justify-start items-center h-full'}
-                                key={post.id}
-                            >
-                                <div className='w-full relative'>
-                                    <div className='absolute inset-0 bg-[#ff4140] opacity-0 hover:opacity-50 transition-opacity'></div>
-                                    <Image
-                                        src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
-                                        alt='post image'
-                                        className='w-full'
-                                        width={400}
-                                        height={400}
-                                    />
-                                </div>
-                                <div className='w-full text-start'>
-                                    <div className='flex flex-col w-full items-start justify-start'>
-                                        {post.categories && (
-                                            <h1 className='text-sm text-[#ff4140] text-start'>{getCategoryName(post.categories)}</h1>
-                                        )}
-                                        <h1 className='font-black text-lg font-jekoblack text-start'>{post.title.rendered}</h1>
-                                        <span>{post.excerpt.protected}</span>
+                        {[
+                            ...posts.slice(0, 5), // Take the first 5 posts
+                            {} as any, // Add a placeholder for the CTA
+                            ...posts.slice(5), // Take the rest of the posts after the 5th one
+                        ].map((post, index) => {
+                            if (index === 5) {
+                                return (
+                                    <div key='flex flex-col w-full h-full items-center justify-center rounded-xl border border-2 border-[#ff4140]'>
+                                        <div className='flex flex-col w-full h-full items-center justify-center rounded-xl border-4 border-[#ff4140] py-4'>
+                                            <Image
+                                                src={'/logo-big.png'}
+                                                alt='post image'
+                                                width={70}
+                                                height={70}
+                                                className='rounded-xl pb-8'
+                                            />
+                                            <h1 className='text-2xl font-bold font-jekobold pb-4 text-center px-8'>
+                                                La meilleure expérience pour{' '}
+                                                <span className='text-[#ff4140] font-jekobold'>devenir freelance</span>
+                                            </h1>
+                                            <Image src={'/laptop.png'} alt='post image' width={150} height={150} className='rounded-xl' />
+                                        </div>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
+                                );
+                            }
+                            return (
+                                <Link
+                                    href={`/posts/${post.slug}`}
+                                    className={'flex flex-col space-y-5 justify-start items-center h-full'}
+                                    key={post.id}
+                                >
+                                    <div className='w-full relative'>
+                                        <div className='absolute inset-0 bg-[#ff4140] opacity-0 hover:opacity-50 transition-opacity'></div>
+                                        <Image
+                                            src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                            alt='post image'
+                                            className='w-full'
+                                            width={400}
+                                            height={400}
+                                        />
+                                    </div>
+                                    <div className='w-full text-start'>
+                                        <div className='flex flex-col w-full items-start justify-start'>
+                                            {post.categories && (
+                                                <h1 className='text-sm text-[#ff4140] text-start'>{getCategoryName(post.categories)}</h1>
+                                            )}
+                                            <h1 className='font-black text-lg font-jekoblack text-start'>{post.title.rendered}</h1>
+                                            <span>{post.excerpt.protected}</span>
+                                        </div>
+                                    </div>
+                                </Link>
+                            );
+                        })}
                     </div>
 
                     <PaginationLinks currentPage={page} totalPages={totalPages} />

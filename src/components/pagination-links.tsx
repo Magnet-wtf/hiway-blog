@@ -12,7 +12,7 @@ export function PaginationLinks({
         .map((_, page) => page + 1);
 
     return (
-        <div className={'flex space-x-4 w-full items-center justify-center'}>
+        <div className={'flex space-x-4 w-full items-center justify-center pt-8'}>
             {pagesArray.map((page) => {
                 const isSelected = page === currentPage;
                 const className = isSelected
