@@ -1,7 +1,7 @@
 import { WP_REST_API_Post as Post, WP_REST_API_Categories, WP_REST_API_Category, WP_REST_API_Tag, WP_REST_API_Tags } from "wp-types";
  
 const API_BASE_URL =
-  process.env.WORDPRESS_API_BASE_URL ?? "http://localhost:10003/wp-json";
+  process.env.WORDPRESS_API_BASE_URL ?? "https://hiway.blog/wp-json";
  
 const API_VERSION = process.env.WORDPRESS_API_VERSION ?? "v2";
 const BASE_URL = `${API_BASE_URL}/wp/${API_VERSION}/`;

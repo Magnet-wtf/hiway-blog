@@ -19,17 +19,17 @@ export default function Home({ searchParams }: HomePageParams) {
     const tags = use(wpService.getTags());
 
     const getTitleFirstWord = (title: string) => {
-        return title.split(' ')[0];
+        return title.split(' ')[0] + ' ' + title.split(' ')[1];
     };
 
     const getTitleWithoutFirstWord = (title: string) => {
-        return title.split(' ').slice(1).join(' ');
+        return title.split(' ').slice(2).join(' ');
     };
 
     const getCategoryName = (categoryIds: number[]) => {
         const category = categories.find((category) => category.id === categoryIds[0]);
         return category ? category.name : '';
-    }
+    };
 
     return (
         <div className='w-full'>
@@ -39,9 +39,7 @@ export default function Home({ searchParams }: HomePageParams) {
                     <h1 className={'text-2xl xl:text-4xl font-bold leading-[52.5px] font-jekoblack'}>
                         <span className='text-[#FF4140] font-jekoblack'>Bienvenue</span> <br /> sur le blog <br /> Hiway
                     </h1>
-                    <p className={'text-sm mt-4 text-[#979797]'}>
-                        Tout ce qu’il faut savoir pour vivre sa meilleure vie de freelance
-                    </p>
+                    <p className={'text-sm mt-4 text-[#979797]'}>Tout ce qu’il faut savoir pour vivre sa meilleure vie de freelance</p>
 
                     <div className='pt-2 relative mx-auto text-gray-600 mt-12 ml-0'>
                         <input
@@ -99,32 +97,52 @@ export default function Home({ searchParams }: HomePageParams) {
                         <Button className='rounded-full bg-[#FDB813] mt-8 text-black font-jekobold'>Prends rdv avec un coach</Button>
                     </div>
                 </div>
-                <div className={'flex flex-col space-y-8 p-4 w-full pt-8'}>
-                    <div className={'flex space-y-5 justify-start items-center w-full px-8 pb-10'} key={posts[0].id}>
-                        <Image src={'/work.png'} alt='post image' width={550} height={350} className='rounded-xl w-92' />
-                        <Link href={`/posts/${posts[0].slug}`} className='max-w-xl ml-8 space-y-4'>
+                <div className={'flex flex-col p-12 w-full'}>
+                    <Link
+                        href={`/posts/${posts[0].slug}`}
+                        className={'flex space-y-5 justify-start items-center w-full px-12 pt-12 pb-8'}
+                        key={posts[0].id}
+                    >
+                        <div className='relative rounded-xl min-w-[50%] h-full'>
+                            <Image src={'/work.png'} alt='post image' width={550} height={350} className='relative rounded-xl h-full' />
+                        </div>
+                        <div className='ml-8 space-y-4'>
                             <h1 className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</h1>
-                            <h1 className='text-6xl font-jekoblack leading-[60px] text-start'>
+                            <h1 className='text-4xl xl:text-5xl font-jekoblack leading-[60px] text-start'>
                                 <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(posts[0].title.rendered)}</span>{' '}
                                 {getTitleWithoutFirstWord(posts[0].title.rendered)}
                             </h1>
                             <span>{posts[0].excerpt.protected}</span>
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
 
-                    <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-8'}>
+                    <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8 xl:gap-12 w-full p-8 xl:p-12'}>
                         {posts.map((post) => (
-                            <div className={'flex flex-col space-y-5 justify-center items-center'} key={post.id}>
-                                <Image src={post.mediaUrl ? post.mediaUrl : '/default-image.png'} alt='post image' width={400} height={400} />
-                                <Link href={`/posts/${post.slug}`} className='w-full text-start'>
-                                    <div className='flex flex-col w-full items-start justify-start px-8'>
-
-                                    {post.categories && <h1 className='text-sm text-[#ff4140] text-start'>{getCategoryName(post.categories)}</h1>}
-                                    <h1 className='font-black text-lg font-jekoblack text-start'>{post.title.rendered}</h1>
-                                    <span>{post.excerpt.protected}</span>
+                            <Link
+                                href={`/posts/${post.slug}`}
+                                className={'flex flex-col space-y-5 justify-start items-center h-full'}
+                                key={post.id}
+                            >
+                                <div className='w-full relative'>
+                                    <div className='absolute inset-0 bg-[#ff4140] opacity-0 hover:opacity-50 transition-opacity'></div>
+                                    <Image
+                                        src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                        alt='post image'
+                                        className='w-full'
+                                        width={400}
+                                        height={400}
+                                    />
+                                </div>
+                                <div className='w-full text-start'>
+                                    <div className='flex flex-col w-full items-start justify-start'>
+                                        {post.categories && (
+                                            <h1 className='text-sm text-[#ff4140] text-start'>{getCategoryName(post.categories)}</h1>
+                                        )}
+                                        <h1 className='font-black text-lg font-jekoblack text-start'>{post.title.rendered}</h1>
+                                        <span>{post.excerpt.protected}</span>
                                     </div>
-                                </Link>
-                            </div>
+                                </div>
+                            </Link>
                         ))}
                     </div>
 
