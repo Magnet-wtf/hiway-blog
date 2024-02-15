@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { PaginationLinks } from '@/components/pagination-links';
+import he from 'he';
 
 interface PostPageParams {
     params: {
@@ -21,6 +22,7 @@ function TagsPage({ params }: PostPageParams) {
     const tags = use(wpService.getTags());
 
     const filteredPosts = posts ? posts.filter((post) => post.tags?.includes(Number(params.slug))) : [];
+    const selectedTag = tags ? tags.find((tag) => tag.id === Number(params.slug)) : null;
 
     const getTitleFirstWord = (title: string) => {
         return title.split(' ')[0];
@@ -28,6 +30,11 @@ function TagsPage({ params }: PostPageParams) {
 
     const getTitleWithoutFirstWord = (title: string) => {
         return title.split(' ').slice(1).join(' ');
+    };
+
+    const getCategoryName = (categoryIds: number[]) => {
+        const category = categories.find((category) => category.id === categoryIds[0]);
+        return category ? category.name : '';
     };
 
     return (
@@ -38,9 +45,7 @@ function TagsPage({ params }: PostPageParams) {
                     <h1 className={'text-2xl xl:text-4xl font-bold leading-[52.5px] font-jekoblack'}>
                         <span className='text-[#FF4140] font-jekoblack'>Bienvenue</span> <br /> sur le blog <br /> Hiway
                     </h1>
-                    <p className={'text-sm mt-4 text-[#979797]'}>
-                        Tout ce qu’il faut savoir pour vivre sa meilleure vie de freelance
-                    </p>
+                    <p className={'text-sm mt-4 text-[#979797]'}>Tout ce qu’il faut savoir pour vivre sa meilleure vie de freelance</p>
 
                     <div className='pt-2 relative mx-auto text-gray-600 mt-12 ml-0'>
                         <input
@@ -63,18 +68,28 @@ function TagsPage({ params }: PostPageParams) {
                     </div>
 
                     <div className={'flex flex-col mt-12'}>
-                        <h1 className={'text-sm font-bold font-jekobold text-[#ff4140] pb-2'}>Tout les sujets</h1>
+                        <Link href={'/'} className={'text-sm font-bold font-jekobold text-[#ff4140] pb-2'}>
+                            Tout les sujets
+                        </Link>
                         {categories.map((category) => (
-                            <Link key={category.id} href={`/categories/${category.slug}`} className='text-sm pb-1'>
+                            <Link key={category.id} href={`/category/${category.id}`} className='text-sm pb-1 hover:text-[#ff4140]'>
                                 {category.name}
                             </Link>
                         ))}
                     </div>
 
                     <div className={'flex flex-col mt-12'}>
-                        <h1 className={'text-sm font-jekobold text-[#ff4140] pb-2'}>Toutes les situations</h1>
+                        <Link href={'/'} className={'text-sm font-jekobold text-[#ff4140] pb-2'}>
+                            Toutes les situations
+                        </Link>
                         {tags.map((tag) => (
-                            <Link key={tag.id} href={`/categories/${tag.slug}`} className='text-sm pb-1'>
+                            <Link
+                                key={tag.id}
+                                href={`/tag/${tag.id}`}
+                                className={`text-sm pb-1 hover:text-[#ff4140] ${
+                                    selectedTag && selectedTag.id === tag.id && 'font-jekoblack'
+                                } `}
+                            >
                                 {tag.name}
                             </Link>
                         ))}
@@ -83,7 +98,7 @@ function TagsPage({ params }: PostPageParams) {
                     <div className='bg-[#FFE6AC] rounded-xl p-4 mt-12'>
                         <h1 className='font-jekobold text-lg mb-4'>Decouvre Hiway</h1>
 
-                        <div className='flex flex-col space-y-2'>
+                        <div className='flex flex-col space-y-2 mb-8'>
                             <div className='flex text-sm items-center'>
                                 <Image src={'/rocket.png'} alt='icon' width={24} height={24} className='mr-2' /> On t’aide à te lancer
                             </div>
@@ -95,37 +110,104 @@ function TagsPage({ params }: PostPageParams) {
                                 l’avenir
                             </div>
                         </div>
-                        <Button className='rounded-full bg-[#FDB813] mt-8 text-black font-jekobold'>Prends rdv avec un coach</Button>
-                    </div>
-                </div>
-                <div className={'flex flex-col space-y-8 p-4 w-full pt-8'}>
-                    <div className={'flex space-y-5 justify-start items-center w-full px-8 pb-10'} key={posts[0].id}>
-                        <Image src={'/work.png'} alt='post image' width={550} height={350} className='rounded-xl w-92' />
-                        <Link href={`/posts/${posts[0].slug}`} className='max-w-xl ml-8 space-y-4'>
-                            <h1 className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</h1>
-                            <h1 className='text-6xl font-jekoblack leading-[60px] text-start'>
-                                <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(posts[0].title.rendered)}</span>{' '}
-                                {getTitleWithoutFirstWord(posts[0].title.rendered)}
-                            </h1>
-                            <span>{posts[0].excerpt.protected}</span>
+                        <Link
+                            href={'https://hiway.fr/contact'}
+                            className='rounded-full bg-[#FDB813] mt-8 px-4 py-2 text-black font-jekobold hover:bg-white'
+                        >
+                            Prends rdv avec un coach
                         </Link>
                     </div>
-
-                    <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-8'}>
-                        {filteredPosts.map((post) => (
-                            <div className={'flex flex-col space-y-5 justify-center items-center'} key={post.id}>
-                                <Image src={post.mediaUrl ? post.mediaUrl : '/default-image.png'} alt='post image' width={400} height={400} />
-                                <Link href={`/posts/${post.slug}`} className='w-full text-start'>
-                                    <div className='flex flex-col w-full items-start justify-start px-8'>
-
-                                    <h1 className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</h1>
-                                    <h1 className='font-black text-lg font-jekoblack text-start'>{post.title.rendered}</h1>
-                                    <span>{post.excerpt.protected}</span>
-                                    </div>
-                                </Link>
+                </div>
+                <div className={'flex flex-col p-12 w-full'}>
+                    {filteredPosts && filteredPosts.length > 0 && (
+                        <Link
+                            href={`/posts/${filteredPosts[0].slug}`}
+                            className={'flex space-y-5 justify-start items-center w-full px-12 pt-12 pb-8'}
+                            key={filteredPosts[0].id}
+                        >
+                            <div className='relative rounded-xl min-w-[50%] h-full'>
+                                <Image src={'/work.png'} alt='post image' width={850} height={650} className='relative rounded-xl h-full' />
                             </div>
-                        ))}
-                    </div>
+                            <div className='ml-8 space-y-4'>
+                                <h1 className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</h1>
+                                <h1 className='text-4xl xl:text-5xl 2xl:text-8xl font-jekoblack leading-[60px] text-start'>
+                                    <span className='text-[#ff4140] font-jekoblack'>
+                                        {getTitleFirstWord(he.decode(filteredPosts[0].title.rendered))}
+                                    </span>{' '}
+                                    {getTitleWithoutFirstWord(he.decode(filteredPosts[0].title.rendered))}
+                                </h1>
+                                <span>{filteredPosts[0].excerpt.protected}</span>
+                            </div>
+                        </Link>
+                    )}
+
+                    {filteredPosts && filteredPosts.length === 0 && (
+                        <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8 xl:gap-12 w-full p-8 xl:p-12'}>
+                            {filteredPosts.length > 5 ? [
+                                ...filteredPosts.slice(0, 5), // Take the first 5 posts
+                                {} as any, // Add a placeholder for the CTA
+                                ...filteredPosts.slice(5), // Take the rest of the posts after the 5th one
+                            ] : filteredPosts.map((post, index) => {
+                                if (index === 5) {
+                                    return (
+                                        <div key='flex flex-col w-full h-full items-center justify-center rounded-xl border border-2 border-[#ff4140]'>
+                                            <div className='flex flex-col w-full h-full items-center justify-center rounded-xl border-4 border-[#ff4140] py-4'>
+                                                <Image
+                                                    src={'/logo-big.png'}
+                                                    alt='post image'
+                                                    width={70}
+                                                    height={70}
+                                                    className='rounded-xl pb-8'
+                                                />
+                                                <h1 className='text-2xl font-bold font-jekobold pb-4 text-center px-8'>
+                                                    La meilleure expérience pour <br />
+                                                    <span className='text-[#ff4140] font-jekobold'>devenir freelance</span>
+                                                </h1>
+                                                <Image
+                                                    src={'/laptop.png'}
+                                                    alt='post image'
+                                                    width={150}
+                                                    height={150}
+                                                    className='rounded-xl'
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                                return (
+                                    <Link
+                                        href={`/posts/${post.slug}`}
+                                        className={'flex flex-col space-y-5 justify-start items-center h-full'}
+                                        key={post.id}
+                                    >
+                                        <div className='w-full relative'>
+                                            <div className='absolute inset-0 bg-[#ff4140] opacity-0 hover:opacity-50 transition-opacity'></div>
+                                            <Image
+                                                src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                                alt='post image'
+                                                className='w-full'
+                                                width={400}
+                                                height={400}
+                                            />
+                                        </div>
+                                        <div className='w-full text-start'>
+                                            <div className='flex flex-col w-full items-start justify-start'>
+                                                {post.categories && (
+                                                    <h1 className='text-sm text-[#ff4140] text-start'>
+                                                        {getCategoryName(post.categories)}
+                                                    </h1>
+                                                )}
+                                                <h1 className='font-black text-lg font-jekoblack text-start'>
+                                                    {he.decode(post.title.rendered)}
+                                                </h1>
+                                                <span>{post.excerpt.protected}</span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    )}
 
                     <PaginationLinks currentPage={page} totalPages={totalPages} />
                 </div>

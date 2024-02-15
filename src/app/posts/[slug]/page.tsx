@@ -51,6 +51,8 @@ function PostPage({ params }: PostPageParams) {
 
     const parsedContent = post ? parse(he.decode(post.content.rendered)) : null;
 
+    const parsedDate = post ? new Date(post.date) : null;
+
     if (!post) {
         notFound();
     }
@@ -61,6 +63,13 @@ function PostPage({ params }: PostPageParams) {
 
     const getTitleWithoutFirstWord = (title: string) => {
         return title.split(' ').slice(2).join(' ');
+    };
+
+    const readingTime = (content: string | null) => {
+        if (!content) return 0;
+        const wordsPerMinute = 200;
+        const textLength = content.split(' ').length;
+        return Math.ceil(textLength / wordsPerMinute);
     };
 
     return (
@@ -99,7 +108,14 @@ function PostPage({ params }: PostPageParams) {
                 <div className={'flex flex-col w-full justify-center space-y-4 px-24 py-12'}>
                     <div className={'flex flex-col space-y-2'}>
                         <div className='flex space-x-4 mb-4'>
-                            {category && <Badge className='bg-[#FDB813] text-black font-jekobold py-2 px-2'>{category?.name}</Badge>}
+                            {category && (
+                                <Link
+                                    href={`/category/${category.id}`}
+                                    className='bg-[#FDB813] rounded-full text-black hover:bg-white border-2 border-[#fdb814] font-jekobold py-2 px-2'
+                                >
+                                    {category?.name}
+                                </Link>
+                            )}
                             {tag.name && <Badge className='bg-[#FDB813] text-black font-jekobold py-2 px-2'>{tag.name}</Badge>}
                         </div>
                         <h1 className={'text-6xl font-bold max-w-5xl font-jekoblack'}>
@@ -107,7 +123,16 @@ function PostPage({ params }: PostPageParams) {
                             {getTitleWithoutFirstWord(he.decode(post.title.rendered))}
                         </h1>
 
-                        <div className='text-[#979797] font-light py-8'>Mis à jour le 12 décembre 2023 | Temps de lecture : X minutes</div>
+                        <div className='text-[#979797] font-light py-8'>
+                            Mis à jour le{' '}
+                            {parsedDate?.toLocaleString('fr-FR', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                            })}{' '}
+                            | Temps de lecture : {readingTime(post.content.rendered)} minutes
+                        </div>
                     </div>
                     <div className='max-w-5xl'>
                         {/* <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} /> */}
@@ -142,7 +167,12 @@ function PostPage({ params }: PostPageParams) {
 
                             <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-8 mt-8'}>
                                 <div className={'flex flex-col space-y-5 justify-center items-center'} key={post.id}>
-                                    <Image src={post.mediaUrl ? post.mediaUrl : '/default-image.png'} alt='post image' width={400} height={400} />
+                                    <Image
+                                        src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                        alt='post image'
+                                        width={400}
+                                        height={400}
+                                    />
                                     <Link href={`/posts/${post.slug}`} className='max-w-sm'>
                                         <h1 className='text-sm text-[#ff4140]'>Se lancer - Micro-entrepreneur</h1>
                                         <h1 className='font-black text-lg font-jekoblack'>{post.title.rendered}</h1>
@@ -151,7 +181,12 @@ function PostPage({ params }: PostPageParams) {
                                 </div>
 
                                 <div className={'flex flex-col space-y-5 justify-center items-center'} key={post.id}>
-                                    <Image src={post.mediaUrl ? post.mediaUrl : '/default-image.png'} alt='post image' width={400} height={400} />
+                                    <Image
+                                        src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                        alt='post image'
+                                        width={400}
+                                        height={400}
+                                    />
                                     <Link href={`/posts/${post.slug}`} className='max-w-sm'>
                                         <h1 className='text-sm text-[#ff4140]'>Se lancer - Micro-entrepreneur</h1>
                                         <h1 className='font-black text-lg font-jekoblack'>{post.title.rendered}</h1>
@@ -160,7 +195,12 @@ function PostPage({ params }: PostPageParams) {
                                 </div>
 
                                 <div className={'flex flex-col space-y-5 justify-center items-center'} key={post.id}>
-                                    <Image src={post.mediaUrl ? post.mediaUrl : '/default-image.png'} alt='post image' width={400} height={400} />
+                                    <Image
+                                        src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                        alt='post image'
+                                        width={400}
+                                        height={400}
+                                    />
                                     <Link href={`/posts/${post.slug}`} className='max-w-sm'>
                                         <h1 className='text-sm text-[#ff4140]'>Se lancer - Micro-entrepreneur</h1>
                                         <h1 className='font-black text-lg font-jekoblack'>{post.title.rendered}</h1>

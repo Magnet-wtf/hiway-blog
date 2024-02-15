@@ -63,18 +63,18 @@ export default function Home({ searchParams }: HomePageParams) {
                     </div>
 
                     <div className={'flex flex-col mt-12'}>
-                        <h1 className={'text-sm font-bold font-jekobold text-[#ff4140] pb-2'}>Tout les sujets</h1>
+                        <Link href={'/'} className={'text-sm font-bold font-jekobold text-[#ff4140] pb-2'}>Tout les sujets</Link>
                         {categories.map((category) => (
-                            <Link key={category.id} href={`/category/${category.id}`} className='text-sm pb-1'>
+                            <Link key={category.id} href={`/category/${category.id}`} className='text-sm pb-1 hover:text-[#ff4140]'>
                                 {category.name}
                             </Link>
                         ))}
                     </div>
 
                     <div className={'flex flex-col mt-12'}>
-                        <h1 className={'text-sm font-jekobold text-[#ff4140] pb-2'}>Toutes les situations</h1>
+                        <Link href={'/'} className={'text-sm font-jekobold text-[#ff4140] pb-2'}>Toutes les situations</Link>
                         {tags.map((tag) => (
-                            <Link key={tag.id} href={`/tag/${tag.id}`} className='text-sm pb-1'>
+                            <Link key={tag.id} href={`/tag/${tag.id}`} className='text-sm pb-1 hover:text-[#ff4140]'>
                                 {tag.name}
                             </Link>
                         ))}
@@ -83,7 +83,7 @@ export default function Home({ searchParams }: HomePageParams) {
                     <div className='bg-[#FFE6AC] rounded-xl p-4 mt-12'>
                         <h1 className='font-jekobold text-lg mb-4'>Decouvre Hiway</h1>
 
-                        <div className='flex flex-col space-y-2'>
+                        <div className='flex flex-col space-y-2 mb-8'>
                             <div className='flex text-sm items-center'>
                                 <Image src={'/rocket.png'} alt='icon' width={24} height={24} className='mr-2' /> On t’aide à te lancer
                             </div>
@@ -95,7 +95,7 @@ export default function Home({ searchParams }: HomePageParams) {
                                 l’avenir
                             </div>
                         </div>
-                        <Button className='rounded-full bg-[#FDB813] mt-8 text-black font-jekobold'>Prends rdv avec un coach</Button>
+                        <Link href={'https://hiway.fr/contact'} className='rounded-full bg-[#FDB813] mt-8 px-4 py-2 text-black font-jekobold hover:bg-white'>Prends rdv avec un coach</Link>
                     </div>
                 </div>
                 <div className={'flex flex-col p-12 w-full'}>

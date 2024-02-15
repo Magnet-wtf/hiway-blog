@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -20,10 +21,10 @@ export default function Footer() {
                         </p>
 
                         <div className='flex space-x-4 mt-8'>
-                            <Button className='rounded-full bg-[#FF4140]'>Se lancer avec Hiway</Button>
-                            <Button variant='outline' className='rounded-full border-[#FF4140] border-2'>
+                            <Link href={'https://hiway.fr'} className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-2 flex justify-center items-center text-[#F6F6F6]'>Se lancer avec Hiway</Link>
+                            <Link href={'https://hiway.fr/simulateur?s=salarieClientFinal'} className='rounded-full border-[#FF4140] border-2 px-4 py-2 flex justify-center items-center'>
                                 Simuler mon revenue
-                            </Button>
+                            </Link>
                         </div>
                     </div>
                     <div className='flex items-center justify-center'>
@@ -41,9 +42,9 @@ export default function Footer() {
                                 La meilleure expérience <br />
                                 pour devenir freelance
                             </h1>
-                            <Button variant='outline' size='lg' className='rounded-full border-[#FF4140] border-2 mt-8'>
+                            <Link href={'https://hiway.fr/simulateur?s=salarieClientFinal'} className='rounded-full border-[#FF4140] border-2 px-4 py-2 flex justify-center items-center mt-8'>
                                 Simuler mon revenue
-                            </Button>
+                            </Link>
                         </div>
                         <div className='flex flex-col items-start px-12 justify-start h-full w-full space-y-4'>
                             <h1 className='font-jekoblack'>Accompagnement</h1>
@@ -58,9 +59,7 @@ export default function Footer() {
                                 <p>Simuler mon revenu</p>
                                 <p>Blog</p>
                             </div>
-                            <Button size='lg' className='rounded-full bg-[#FF4140]'>
-                                Prendre rendez-vous
-                            </Button>
+                            <Link href={'https://hiway.fr/contact'} className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-2 flex justify-center items-center text-[#F6F6F6]'>Prendre rendez vous</Link>
                         </div>
                     </div>
                     <div className='w-full flex flex-col items-center justify-center'>

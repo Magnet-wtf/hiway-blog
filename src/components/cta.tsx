@@ -1,5 +1,6 @@
 import { SlidersHorizontal } from 'lucide-react';
 import { Button } from './ui/button';
+import Link from 'next/link';
 
 export default function CTA() {
     return (
@@ -13,10 +14,10 @@ export default function CTA() {
                 </div>
 
                 <div className='flex items-center justify-center h-full'>
-                    <Button size='lg' className='rounded-full bg-white text-black font-jekobold'>
+                    <Link href={'https://hiway.fr/simulateur?s=salarieClientFinal'} className='rounded-full bg-white text-black font-jekobold px-4 py-4 flex items-center justify-center'>
                         <SlidersHorizontal className='h-6 w-6 mr-4 text-black' />
                         Simuler mon revenue
-                    </Button>
+                    </Link>
                 </div>
             </div>
         </div>
