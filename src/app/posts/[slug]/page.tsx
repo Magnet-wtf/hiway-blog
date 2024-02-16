@@ -135,6 +135,7 @@ function PostPage({ params }: PostPageParams) {
                         </div>
                     </div>
                     <div className='max-w-5xl'>
+                        <Image src={post.mediaUrl ? post.mediaUrl : '/default-image.png'} alt='post image' width={600} height={400} className='rounded-xl mb-12' />
                         {/* <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} /> */}
                         {parsedContent}
 
