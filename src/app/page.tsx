@@ -36,7 +36,7 @@ export default function Home({ searchParams }: HomePageParams) {
         <div className='w-full'>
             <div className={'flex'}>
                 {/** Sidebar */}
-                <div className={'flex flex-col left-0 p-4 pt-8 w-[350px] border-r'}>
+                <div className={'flex flex-col left-0 pr-8 pl-12 pt-20 w-[350px] border-r'}>
                     <h1 className={'text-2xl xl:text-4xl font-bold leading-[52.5px] font-jekoblack'}>
                         <span className='text-[#FF4140] font-jekoblack'>Bienvenue</span> <br /> sur le blog <br /> Hiway
                     </h1>
@@ -63,7 +63,9 @@ export default function Home({ searchParams }: HomePageParams) {
                     </div>
 
                     <div className={'flex flex-col mt-12'}>
-                        <Link href={'/'} className={'text-sm font-bold font-jekobold text-[#ff4140] pb-2'}>Tout les sujets</Link>
+                        <Link href={'/'} className={'text-sm font-bold font-jekobold text-[#ff4140] pb-2'}>
+                            Tout les sujets
+                        </Link>
                         {categories.map((category) => (
                             <Link key={category.id} href={`/category/${category.id}`} className='text-sm pb-1 hover:text-[#ff4140]'>
                                 {category.name}
@@ -72,7 +74,9 @@ export default function Home({ searchParams }: HomePageParams) {
                     </div>
 
                     <div className={'flex flex-col mt-12'}>
-                        <Link href={'/'} className={'text-sm font-jekobold text-[#ff4140] pb-2'}>Toutes les situations</Link>
+                        <Link href={'/'} className={'text-sm font-jekobold text-[#ff4140] pb-2'}>
+                            Toutes les situations
+                        </Link>
                         {tags.map((tag) => (
                             <Link key={tag.id} href={`/tag/${tag.id}`} className='text-sm pb-1 hover:text-[#ff4140]'>
                                 {tag.name}
@@ -95,83 +99,113 @@ export default function Home({ searchParams }: HomePageParams) {
                                 l’avenir
                             </div>
                         </div>
-                        <Link href={'https://hiway.fr/contact'} className='rounded-full bg-[#FDB813] mt-8 px-4 py-2 text-black font-jekobold hover:bg-white'>Prends rdv avec un coach</Link>
+                        <Link
+                            href={'https://hiway.fr/contact'}
+                            className='rounded-full bg-[#FDB813] mt-8 px-4 py-2 text-black text-sm font-jekobold hover:bg-white'
+                        >
+                            Prends rdv avec un coach
+                        </Link>
                     </div>
                 </div>
-                <div className={'flex flex-col p-12 w-full'}>
-                    <Link
-                        href={`/posts/${posts[0].slug}`}
-                        className={'flex space-y-5 justify-start items-center w-full px-12 pt-12 pb-8'}
-                        key={posts[0].id}
-                    >
-                        <div className='relative rounded-xl min-w-[50%] h-full'>
-                            <Image src={'/work.png'} alt='post image' width={850} height={650} className='relative rounded-xl h-full' />
-                        </div>
-                        <div className='ml-8 space-y-4'>
-                            <h1 className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</h1>
-                            <h1 className='text-4xl xl:text-5xl 2xl:text-8xl font-jekoblack leading-[60px] text-start'>
-                                <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(he.decode(posts[0].title.rendered))}</span>{' '}
-                                {getTitleWithoutFirstWord(he.decode(posts[0].title.rendered))}
-                            </h1>
-                            <span>{posts[0].excerpt.protected}</span>
-                        </div>
-                    </Link>
+                <div className={'flex flex-col p-8 w-full'}>
+                    {posts && posts.length > 0 && (
+                        <>
+                            <Link
+                                href={`/posts/${posts[0].slug}`}
+                                className={'flex space-y-5 justify-start items-center w-full px-8 pt-12 pb-8'}
+                                key={posts[0].id}
+                            >
+                                <div className='relative rounded-xl min-w-[50%] h-full'>
+                                    <Image
+                                        src={'/work.png'}
+                                        alt='post image'
+                                        width={850}
+                                        height={650}
+                                        className='relative rounded-xl h-full'
+                                    />
+                                </div>
+                                <div className='ml-8 space-y-4'>
+                                    <h1 className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</h1>
+                                    <h1 className='text-4xl xl:text-5xl 2xl:text-8xl font-jekoblack leading-[60px] text-start'>
+                                        <span className='text-[#ff4140] font-jekoblack'>
+                                            {getTitleFirstWord(he.decode(posts[0].title.rendered))}
+                                        </span>{' '}
+                                        {getTitleWithoutFirstWord(he.decode(posts[0].title.rendered))}
+                                    </h1>
+                                    <span>{posts[0].excerpt.protected}</span>
+                                </div>
+                            </Link>
 
-                    <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8 xl:gap-12 w-full p-8 xl:p-12'}>
-                        {[
-                            ...posts.slice(0, 5), // Take the first 5 posts
-                            {} as any, // Add a placeholder for the CTA
-                            ...posts.slice(5), // Take the rest of the posts after the 5th one
-                        ].map((post, index) => {
-                            if (index === 5) {
-                                return (
-                                    <div key='flex flex-col w-full h-full items-center justify-center rounded-xl border border-2 border-[#ff4140]'>
-                                        <div className='flex flex-col w-full h-full items-center justify-center rounded-xl border-4 border-[#ff4140] py-4'>
-                                            <Image
-                                                src={'/logo-big.png'}
-                                                alt='post image'
-                                                width={70}
-                                                height={70}
-                                                className='rounded-xl pb-8'
-                                            />
-                                            <h1 className='text-2xl font-bold font-jekobold pb-4 text-center px-8'>
-                                                La meilleure expérience pour{' '} <br />
-                                                <span className='text-[#ff4140] font-jekobold'>devenir freelance</span>
-                                            </h1>
-                                            <Image src={'/laptop.png'} alt='post image' width={150} height={150} className='rounded-xl' />
-                                        </div>
-                                    </div>
-                                );
-                            }
-                            return (
-                                <Link
-                                    href={`/posts/${post.slug}`}
-                                    className={'flex flex-col space-y-5 justify-start items-center h-full'}
-                                    key={post.id}
-                                >
-                                    <div className='w-full relative'>
-                                        <div className='absolute inset-0 bg-[#ff4140] opacity-0 hover:opacity-50 transition-opacity'></div>
-                                        <Image
-                                            src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
-                                            alt='post image'
-                                            className='w-full'
-                                            width={400}
-                                            height={400}
-                                        />
-                                    </div>
-                                    <div className='w-full text-start'>
-                                        <div className='flex flex-col w-full items-start justify-start'>
-                                            {post.categories && (
-                                                <h1 className='text-sm text-[#ff4140] text-start'>{getCategoryName(post.categories)}</h1>
-                                            )}
-                                            <h1 className='font-black text-lg font-jekoblack text-start'>{he.decode(post.title.rendered)}</h1>
-                                            <span>{post.excerpt.protected}</span>
-                                        </div>
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </div>
+                            <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8 xl:gap-12 w-full p-8 xl:p-8'}>
+                                {[
+                                    ...posts.slice(0, 5), // Take the first 5 posts
+                                    {} as any, // Add a placeholder for the CTA
+                                    ...posts.slice(5), // Take the rest of the posts after the 5th one
+                                ].map((post, index) => {
+                                    if (index === 5) {
+                                        return (
+                                            <div key='flex flex-col w-full h-full items-center justify-center rounded-xl border border-2 border-[#f6f6f6]'>
+                                                <Link
+                                                    href={'https://hiway.fr'}
+                                                    className='flex flex-col w-full h-full items-center justify-center rounded-xl border-4 border-[#f6f6f6] py-4 cursor-pointer'
+                                                >
+                                                    <Image
+                                                        src={'/logo-big.png'}
+                                                        alt='post image'
+                                                        width={70}
+                                                        height={70}
+                                                        className='rounded-xl pb-8'
+                                                    />
+                                                    <h1 className='text-2xl font-bold font-jekobold pb-4 text-center px-8'>
+                                                        La meilleure expérience pour <br />
+                                                        <span className='text-[#ff4140] font-jekobold'>devenir freelance</span>
+                                                    </h1>
+                                                    <Image
+                                                        src={'/laptop.png'}
+                                                        alt='post image'
+                                                        width={150}
+                                                        height={150}
+                                                        className='rounded-xl'
+                                                    />
+                                                </Link>
+                                            </div>
+                                        );
+                                    }
+                                    return (
+                                        <Link
+                                            href={`/posts/${post.slug}`}
+                                            className={'flex flex-col space-y-5 justify-start items-center h-full'}
+                                            key={post.id}
+                                        >
+                                            <div className='w-full relative'>
+                                                <div className='absolute inset-0 bg-[#ff4140] opacity-0 hover:opacity-50 transition-opacity'></div>
+                                                <Image
+                                                    src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                                    alt='post image'
+                                                    className='w-full'
+                                                    width={400}
+                                                    height={400}
+                                                />
+                                            </div>
+                                            <div className='w-full text-start'>
+                                                <div className='flex flex-col w-full items-start justify-start'>
+                                                    {post.categories && (
+                                                        <h1 className='text-sm text-[#ff4140] text-start'>
+                                                            {getCategoryName(post.categories)}
+                                                        </h1>
+                                                    )}
+                                                    <h1 className='font-black text-lg font-jekoblack text-start'>
+                                                        {he.decode(post.title.rendered)}
+                                                    </h1>
+                                                    <span>{post.excerpt.protected}</span>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </>
+                    )}
 
                     <PaginationLinks currentPage={page} totalPages={totalPages} />
                 </div>

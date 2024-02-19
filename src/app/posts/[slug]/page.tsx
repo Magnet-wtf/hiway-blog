@@ -76,7 +76,7 @@ function PostPage({ params }: PostPageParams) {
         <div className={'w-full'}>
             <div className={'flex'}>
                 {/** Sidebar */}
-                <div className={'flex flex-col left-0 p-4 pt-8 w-[350px] border-r'}>
+                <div className={'flex flex-col left-0 pl-12 pr-4 pt-8 w-[350px] border-r'}>
                     <h1 className={'text-xl font-jekobold leading-[52.5px]'}>Sommaire</h1>
 
                     <PostSummary post={post} />
@@ -118,7 +118,7 @@ function PostPage({ params }: PostPageParams) {
                             )}
                             {tag.name && <Badge className='bg-[#FDB813] text-black font-jekobold py-2 px-2'>{tag.name}</Badge>}
                         </div>
-                        <h1 className={'text-6xl font-bold max-w-5xl font-jekoblack'}>
+                        <h1 className={'text-6xl font-bold max-w-[800px] font-jekoblack'}>
                             <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(he.decode(post.title.rendered))}</span>{' '}
                             {getTitleWithoutFirstWord(he.decode(post.title.rendered))}
                         </h1>
@@ -134,7 +134,7 @@ function PostPage({ params }: PostPageParams) {
                             | Temps de lecture : {readingTime(post.content.rendered)} minutes
                         </div>
                     </div>
-                    <div className='max-w-5xl'>
+                    <div className='max-w-[800px]'>
                         <Image src={post.mediaUrl ? post.mediaUrl : '/default-image.png'} alt='post image' width={600} height={400} className='rounded-xl mb-12' />
                         {/* <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} /> */}
                         {parsedContent}

@@ -40,7 +40,7 @@ function CategoriesPage({ params }: PostPageParams) {
         <div className='w-full'>
             <div className={'flex'}>
                 {/** Sidebar */}
-                <div className={'flex flex-col left-0 p-4 pt-8 w-[350px] border-r'}>
+                <div className={'flex flex-col left-0 pr-8 pl-12 pt-20 w-[350px] border-r'}>
                     <h1 className={'text-2xl xl:text-4xl font-bold leading-[52.5px] font-jekoblack'}>
                         <span className='text-[#FF4140] font-jekoblack'>Bienvenue</span> <br /> sur le blog <br /> Hiway
                     </h1>
@@ -111,13 +111,13 @@ function CategoriesPage({ params }: PostPageParams) {
                         </div>
                         <Link
                             href={'https://hiway.fr/contact'}
-                            className='rounded-full bg-[#FDB813] mt-8 px-4 py-2 text-black font-jekobold hover:bg-white'
+                            className='rounded-full bg-[#FDB813] mt-8 px-4 py-2 text-black font-jekobold hover:bg-white text-sm'
                         >
                             Prends rdv avec un coach
                         </Link>
                     </div>
                 </div>
-                <div className={'flex flex-col p-12 w-full'}>
+                <div className={'flex flex-col p-8 w-full'}>
                     {filteredPosts && filteredPosts.length > 0 && (
                         <Link
                             href={`/posts/${filteredPosts[0].slug}`}
@@ -141,7 +141,7 @@ function CategoriesPage({ params }: PostPageParams) {
                     )}
 
                     {filteredPosts && filteredPosts.length > 1 && (
-                        <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8 xl:gap-12 w-full p-8 xl:p-12'}>
+                        <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8 xl:gap-12 w-full p-8 xl:p-8'}>
                             {filteredPosts.length > 5 ? [
                                 ...filteredPosts.slice(0, 5), // Take the first 5 posts
                                 {} as any, // Add a placeholder for the CTA
