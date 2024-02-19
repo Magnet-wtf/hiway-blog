@@ -85,7 +85,7 @@ export default function Home({ searchParams }: HomePageParams) {
                     </div>
 
                     <div className='bg-[#FFE6AC] rounded-xl p-4 mt-12'>
-                        <h1 className='font-jekobold text-lg mb-4'>Decouvre Hiway</h1>
+                        <div className='font-jekobold text-lg mb-4'>Decouvre Hiway</div>
 
                         <div className='flex flex-col space-y-2 mb-8'>
                             <div className='flex text-sm items-center'>
@@ -125,13 +125,13 @@ export default function Home({ searchParams }: HomePageParams) {
                                     />
                                 </div>
                                 <div className='ml-8 space-y-4'>
-                                    <h1 className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</h1>
-                                    <h1 className='text-4xl xl:text-5xl 2xl:text-8xl font-jekoblack leading-[60px] text-start'>
+                                    <div className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</div>
+                                    <div className='text-4xl xl:text-5xl 2xl:text-8xl font-jekoblack leading-[60px] text-start'>
                                         <span className='text-[#ff4140] font-jekoblack'>
                                             {getTitleFirstWord(he.decode(posts[0].title.rendered))}
                                         </span>{' '}
                                         {getTitleWithoutFirstWord(he.decode(posts[0].title.rendered))}
-                                    </h1>
+                                    </div>
                                     <span>{posts[0].excerpt.protected}</span>
                                 </div>
                             </Link>
@@ -156,10 +156,10 @@ export default function Home({ searchParams }: HomePageParams) {
                                                         height={70}
                                                         className='rounded-xl pb-8'
                                                     />
-                                                    <h1 className='text-2xl font-bold font-jekobold pb-4 text-center px-8'>
+                                                    <div className='text-2xl font-bold font-jekobold pb-4 text-center px-8'>
                                                         La meilleure expérience pour <br />
                                                         <span className='text-[#ff4140] font-jekobold'>devenir freelance</span>
-                                                    </h1>
+                                                    </div>
                                                     <Image
                                                         src={'/laptop.png'}
                                                         alt='post image'
@@ -190,13 +190,13 @@ export default function Home({ searchParams }: HomePageParams) {
                                             <div className='w-full text-start'>
                                                 <div className='flex flex-col w-full items-start justify-start'>
                                                     {post.categories && (
-                                                        <h1 className='text-sm text-[#ff4140] text-start'>
+                                                        <div className='text-sm text-[#ff4140] text-start'>
                                                             {getCategoryName(post.categories)}
-                                                        </h1>
+                                                        </div>
                                                     )}
-                                                    <h1 className='font-black text-lg font-jekoblack text-start'>
+                                                    <div className='font-black text-lg font-jekoblack text-start'>
                                                         {he.decode(post.title.rendered)}
-                                                    </h1>
+                                                    </div>
                                                     <span>{post.excerpt.protected}</span>
                                                 </div>
                                             </div>
