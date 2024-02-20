@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from './ui/button';
-import { User } from 'lucide-react';
+import { Menu, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React from 'react';
 import {
@@ -23,7 +23,7 @@ export default function Header() {
                 <Link href='/'>
                     <Image src='/logo.png' alt='logo' width={45} height={45} />
                 </Link>
-                {!isMobile && (
+                {!isMobile ? (
                     <div className='flex space-x-4 items-center'>
                         <NavigationMenu className='pt-8'>
                             <NavigationMenuList>
@@ -71,6 +71,11 @@ export default function Header() {
                             <User className='h-6 w-6' />
                         </Button>
                     </div>
+                ): (
+                    <div className='flex space-x-4 items-center'>
+                        <Menu />
+                    </div>
+                
                 )}
             </div>
         </div>
