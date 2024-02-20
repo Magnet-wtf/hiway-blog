@@ -49,7 +49,7 @@ export default function PostContent({post, category, tag}: {post: PostWithMedia,
         return Math.ceil(textLength / wordsPerMinute);
     };
     return (
-        <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile && "px-24 py-12"}`}>
+        <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? "px-24" : "px-8"} py-12`}>
                     <div className={'flex flex-col space-y-2'}>
                         <div className='flex space-x-4 mb-4'>
                             {category && (

@@ -1,8 +1,11 @@
+"use client"
+
 import Image from 'next/image';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 import Link from 'next/link';
 import { SlidersHorizontal } from 'lucide-react';
+import { isMobile } from 'react-device-detect';
 
 export default function Footer() {
     return (
@@ -82,8 +85,8 @@ export default function Footer() {
                     <div className='w-full flex flex-col items-center justify-center'>
                         <Separator className='max-w-[90%] bg-[#C7C7C7]' />
                         <div className='w-full px-12'>
-                            <div className='flex w-full items-center justify-between pt-8 px-12'>
-                                <div className='flex items-center space-x-8 text-black font-jekobold text-sm'>
+                            <div className={`flex ${isMobile && "flex-col"} w-full items-center justify-between pt-8 px-12`}>
+                                <div className={`flex items-center space-x-8 text-black font-jekobold text-sm`}>
                                     <Link href="https://hiway.fr/legal">
                                         <div>Mentions légales</div>
                                     </Link>
