@@ -87,6 +87,9 @@ export default function Header() {
             {mobileMenuOpen && (
                 <div className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm'>
                     <div className='flex items-center justify-between'>
+                        <Button className='rounded-full px-2 bg-[#F96547]'>
+                            <User className='h-6 w-6' />
+                        </Button>
                         <Link href='/' className='-m-3'>
                             <Image src='/logo.png' alt='logo' width={45} height={45} />
                         </Link>
@@ -120,9 +123,6 @@ export default function Header() {
                                 <Button className='rounded-full bg-[#F96547]'>Nous contacter</Button>
                                 <Button variant='outline' className='rounded-full border-[#f96547] border-2'>
                                     Simuler mon revenue
-                                </Button>
-                                <Button className='rounded-full px-2 bg-[#F96547]'>
-                                    <User className='h-6 w-6' />
                                 </Button>
                             </div>
                         </div>
