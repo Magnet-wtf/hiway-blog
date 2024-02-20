@@ -87,37 +87,36 @@ export default function Header() {
             {mobileMenuOpen && (
                 <div className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm'>
                     <div className='flex items-center justify-between'>
-                        <Link href='/' className='-m-1.5 p-1.5'>
+                        <Link href='/' className='-m-2'>
                             <Image src='/logo.png' alt='logo' width={45} height={45} />
                         </Link>
-                        <button type='button' className='-m-2.5 rounded-md p-2.5 text-white' onClick={() => setMobileMenuOpen(false)}>
+                        <button type='button' className='-m-2.5 rounded-md p-2.5 text-black' onClick={() => setMobileMenuOpen(false)}>
                             <span className='sr-only'>Fermer</span>
                             <Cross className='h-6 w-6' aria-hidden='true' />
                         </button>
                     </div>
                     <div className='mt-6 flow-root'>
                         <div className='-my-6'>
-                            {/* <div className='space-y-2 py-6'>
-                                    <ListItem href='https://hiway.fr/devenir-freelance' title="On t'aide à lancer ton activité" />
-                                    <ListItem
-                                        href='https://hiway.fr/plateforme-accompagnement-freelance'
-                                        title='On gère ta société au quotidien'
-                                    />
-                                    <ListItem
-                                        href='https://hiway.fr/investir-patrimoine-freelance'
-                                        title="On t'aide à bien préparer ton avenir"
-                                    />
-                                    <Link href='/temoignage' className='font-light text-sm'>
-                                        Témoignages
-                                    </Link>
-                                    <ListItem
-                                        href='https://hiway.fr/simulateur?s=salarieClientFinal'
-                                        title='Simulation revenu de freelance'
-                                    />
-                                    <ListItem href='/' title='Blog' />
-                                </div> */}
+                            <div className='space-y-2 py-6 flex flex-col'>
+                                <Link href='https://hiway.fr/devenir-freelance' className='font-light text-sm'>
+                                    On t'aide à lancer ton activité
+                                </Link>
+                                <Link href='https://hiway.fr/plateforme-accompagnement-freelance' className='font-light text-sm'>
+                                    On gère ta société au quotidien
+                                </Link>
+                                <Link href='https://hiway.fr/investir-patrimoine-freelance' className='font-light text-sm'>
+                                    On t'aide à bien préparer ton avenir
+                                </Link>
+                                <Link href='/temoignage' className='font-light text-sm'>
+                                    Témoignages
+                                </Link>
+                                <Link href='https://hiway.fr/simulateur?s=salarieClientFinal' className='font-light text-sm'>
+                                    Simulation revenu de freelance
+                                </Link>
+                                <Link href='/' title='Blog' />
+                            </div>
 
-                            <div className='py-6'>
+                            <div className='py-6 flex flex-col'>
                                 <Button className='rounded-full bg-[#F96547]'>Nous contacter</Button>
                                 <Button variant='outline' className='rounded-full border-[#f96547] border-2'>
                                     Simuler mon revenue
