@@ -15,7 +15,6 @@ import {
     NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { isMobile } from 'react-device-detect';
-import { Dialog, DialogContent } from './ui/dialog';
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
@@ -86,20 +85,19 @@ export default function Header() {
                 )}
             </div>
             {mobileMenuOpen && (
-                <div>
-                    <div className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm'>
-                        <div className='flex items-center justify-between'>
-                            <Link href='/' className='-m-1.5 p-1.5'>
-                                <Image src='/logo.png' alt='logo' width={45} height={45} />
-                            </Link>
-                            <button type='button' className='-m-2.5 rounded-md p-2.5 text-white' onClick={() => setMobileMenuOpen(false)}>
-                                <span className='sr-only'>Fermer</span>
-                                <Cross className='h-6 w-6' aria-hidden='true' />
-                            </button>
-                        </div>
-                        <div className='mt-6 flow-root'>
-                            <div className='-my-6'>
-                                <div className='space-y-2 py-6'>
+                <div className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm'>
+                    <div className='flex items-center justify-between'>
+                        <Link href='/' className='-m-1.5 p-1.5'>
+                            <Image src='/logo.png' alt='logo' width={45} height={45} />
+                        </Link>
+                        <button type='button' className='-m-2.5 rounded-md p-2.5 text-white' onClick={() => setMobileMenuOpen(false)}>
+                            <span className='sr-only'>Fermer</span>
+                            <Cross className='h-6 w-6' aria-hidden='true' />
+                        </button>
+                    </div>
+                    <div className='mt-6 flow-root'>
+                        <div className='-my-6'>
+                            {/* <div className='space-y-2 py-6'>
                                     <ListItem href='https://hiway.fr/devenir-freelance' title="On t'aide à lancer ton activité" />
                                     <ListItem
                                         href='https://hiway.fr/plateforme-accompagnement-freelance'
@@ -117,17 +115,16 @@ export default function Header() {
                                         title='Simulation revenu de freelance'
                                     />
                                     <ListItem href='/' title='Blog' />
-                                </div>
+                                </div> */}
 
-                                <div className='py-6'>
-                                    <Button className='rounded-full bg-[#F96547]'>Nous contacter</Button>
-                                    <Button variant='outline' className='rounded-full border-[#f96547] border-2'>
-                                        Simuler mon revenue
-                                    </Button>
-                                    <Button className='rounded-full px-2 bg-[#F96547]'>
-                                        <User className='h-6 w-6' />
-                                    </Button>
-                                </div>
+                            <div className='py-6'>
+                                <Button className='rounded-full bg-[#F96547]'>Nous contacter</Button>
+                                <Button variant='outline' className='rounded-full border-[#f96547] border-2'>
+                                    Simuler mon revenue
+                                </Button>
+                                <Button className='rounded-full px-2 bg-[#F96547]'>
+                                    <User className='h-6 w-6' />
+                                </Button>
                             </div>
                         </div>
                     </div>
