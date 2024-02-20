@@ -99,13 +99,13 @@ export default function Header() {
                         <div className='-my-6'>
                             <div className='space-y-2 py-6 flex flex-col'>
                                 <Link href='https://hiway.fr/devenir-freelance' className='font-light text-sm'>
-                                    On t'aide à lancer ton activité
+                                    On t&apos;aide à lancer ton activité
                                 </Link>
                                 <Link href='https://hiway.fr/plateforme-accompagnement-freelance' className='font-light text-sm'>
                                     On gère ta société au quotidien
                                 </Link>
                                 <Link href='https://hiway.fr/investir-patrimoine-freelance' className='font-light text-sm'>
-                                    On t'aide à bien préparer ton avenir
+                                    On t&apos;aide à bien préparer ton avenir
                                 </Link>
                                 <Link href='/temoignage' className='font-light text-sm'>
                                     Témoignages
