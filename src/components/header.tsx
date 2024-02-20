@@ -20,7 +20,7 @@ import { Dialog, DialogContent } from './ui/dialog';
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
     return (
-        <div className={'w-full'}>
+        <div className={'w-full flex flex-col'}>
             <div className='w-full h-[56px] p-4 flex items-center justify-between shadow-xl'>
                 <Link href='/'>
                     <Image src='/logo.png' alt='logo' width={45} height={45} />
@@ -74,8 +74,14 @@ export default function Header() {
                         </Button>
                     </div>
                 ) : (
-                    <div className='flex space-x-4 items-center'>
-                        <Menu onClick={() => setMobileMenuOpen(true)} />
+                    <div
+                        className='flex space-x-4 items-center'
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setMobileMenuOpen(true);
+                        }}
+                    >
+                        <Menu />
                     </div>
                 )}
             </div>
