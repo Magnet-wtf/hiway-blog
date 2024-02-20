@@ -22,8 +22,8 @@ export default function Header() {
         <div className={'w-full flex flex-col'}>
             <div className='w-full h-[56px] p-4 flex items-center justify-between shadow-xl'>
                 {isMobile && (
-                    <Button className='rounded-full px-2 bg-[#F96547]'>
-                        <User className='h-6 w-6' />
+                    <Button className='rounded-full px-2'>
+                        <User className='h-6 w-6 text-black' />
                     </Button>
                 )}
                 <Link href='/'>
