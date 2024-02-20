@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from './ui/button';
-import { Cross, CrossIcon, Menu, User } from 'lucide-react';
+import { Cross, CrossIcon, Menu, User, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React from 'react';
 import {
@@ -21,6 +21,11 @@ export default function Header() {
     return (
         <div className={'w-full flex flex-col'}>
             <div className='w-full h-[56px] p-4 flex items-center justify-between shadow-xl'>
+                {isMobile && (
+                    <Button className='rounded-full px-2 bg-[#F96547]'>
+                        <User className='h-6 w-6' />
+                    </Button>
+                )}
                 <Link href='/'>
                     <Image src='/logo.png' alt='logo' width={45} height={45} />
                 </Link>
@@ -87,15 +92,12 @@ export default function Header() {
             {mobileMenuOpen && (
                 <div className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm'>
                     <div className='flex items-center justify-between'>
-                        <Button className='rounded-full px-2 bg-[#F96547]'>
-                            <User className='h-6 w-6' />
-                        </Button>
                         <Link href='/' className='-m-3'>
                             <Image src='/logo.png' alt='logo' width={45} height={45} />
                         </Link>
                         <button type='button' className='-m-2.5 rounded-md p-2.5 text-black' onClick={() => setMobileMenuOpen(false)}>
                             <span className='sr-only'>Fermer</span>
-                            <CrossIcon className='h-6 w-6' aria-hidden='true' />
+                            <X className='h-6 w-6' aria-hidden='true' />
                         </button>
                     </div>
                     <div className='mt-6 flow-root'>
