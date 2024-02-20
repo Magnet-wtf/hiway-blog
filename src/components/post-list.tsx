@@ -14,7 +14,7 @@ export default function PostList({ posts, categories }: { posts: PostWithMedia[]
     };
 
     return (
-        <div className={`grid grid-cols-1 gap-4 ${!isMobile  && " md:grid-cols-2 xl:grid-cols-3 md:gap-8 xl:gap-12 p-8 xl:p-8"} w-full`}>
+        <div className={`grid grid-cols-1 gap-8 ${!isMobile  && " md:grid-cols-2 xl:grid-cols-3 md:gap-8 xl:gap-12 p-8 xl:p-8"} w-full`}>
             {[
                 ...posts.slice(0, 5), // Take the first 5 posts
                 {} as any, // Add a placeholder for the CTA
