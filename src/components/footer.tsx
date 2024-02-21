@@ -13,7 +13,7 @@ export default function Footer() {
             <div className={`w-full ${isMobile ? "p-4" : "p-12" } mt-24`}>
                 {isMobile ? (
                     <div className='w-full rounded-xl bg-[#F6F6F6] flex flex-col justify-center items-center pb-8'>
-                        <div className='flex items-center justify-center'>
+                        <div className='flex items-center justify-center pt-8'>
                             <Image src={'/illustration.png'} alt='freelance' width={300} height={200} />
                         </div>
                         <div className='flex flex-col items-start justify-start text-left pt-12 px-4 h-full w-full'>
@@ -103,7 +103,7 @@ export default function Footer() {
                                 <p>On gère ta société au quotidien</p>
                                 <p>On t&apos;aide à bien préparer ton avenir</p>
                             </div>
-                            <div className='flex flex-col items-start justify-start space-y-20 px-12'>
+                            <div className='flex flex-col items-start justify-start space-y-4 mt-8'>
                                 <div className='flex flex-col w-full items-start justify-start space-y-4'>
                                     <h1 className='font-jekoblack'>Ressources</h1>
                                     <p className=''>Témoignages</p>
@@ -159,7 +159,7 @@ export default function Footer() {
                         <Separator className='max-w-[90%] bg-[#C7C7C7]' />
                         <div className='w-full px-12'>
                             <div className={`flex ${isMobile && 'flex-col'} w-full items-center justify-between pt-8 px-12`}>
-                                <div className={`flex ${isMobile && 'flex-col'} items-center space-x-8 text-black font-jekobold text-sm`}>
+                                <div className={`flex ${isMobile && 'flex-col'} items-center ${isMobile ? "space-y-4 justify-center" : "space-x-8"} text-black font-jekobold text-sm`}>
                                     <Link href='https://hiway.fr/legal'>
                                         <div>Mentions légales</div>
                                     </Link>
@@ -221,7 +221,7 @@ export default function Footer() {
                                 </div>
                             </div>
                         </div>
-                        <div className='w-full px-24 pt-4 text-xs font-light text-[#ADADAD]'>
+                        <div className={`w-full ${!isMobile ? "px-24" : "text-center"} pt-4 text-xs font-light text-[#ADADAD]`}>
                             © Copyright 2024 Hiway. Tous droits réservés.
                         </div>
                     </div>
