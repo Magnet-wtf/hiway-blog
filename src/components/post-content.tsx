@@ -92,7 +92,7 @@ export default function PostContent({post, category, tag}: {post: PostWithMedia,
                         <CTA />
 
                         <div className='w-full flex flex-col items-center justify-center mt-12'>
-                            <div className='w-full rounded-xl bg-[#F6F6F6] p-12 flex flex-col justify-center items-center text-center'>
+                            <div className={`w-full rounded-xl bg-[#F6F6F6] ${isMobile ? "p-4" : "p-12"} flex flex-col justify-center items-center text-center`}>
                                 <div className='font-jekobold text-black text-2xl'>
                                     Une question ? Une remarques ? <br />{' '}
                                     <span className='text-[#ff4140] font-jekobold'>Laisse un commentaire</span>
