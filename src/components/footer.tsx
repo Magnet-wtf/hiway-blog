@@ -104,7 +104,7 @@ export default function Footer() {
                                 <p>On t&apos;aide à bien préparer ton avenir</p>
                             </div>
                             <div className='flex flex-col items-start justify-start h-full w-full space-y-4 mt-8'>
-                                <div className='flex flex-col w-full items-start justify-start space-y-4'>
+                                <div className='flex flex-col w-full items-start justify-start space-y-4 pb-12'>
                                     <h1 className='font-jekoblack'>Ressources</h1>
                                     <p className=''>Témoignages</p>
                                     <p>Simuler mon revenu</p>
