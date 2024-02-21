@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import Image from 'next/image';
 import { Button } from './ui/button';
@@ -11,92 +11,165 @@ export default function Footer() {
     return (
         <div className='flex flex-col w-full'>
             <div className='w-full p-12 mt-24'>
-                <div className='w-full rounded-xl bg-[#F6F6F6] grid grid-cols-2 min-h-[628px]'>
-                    <div className='flex flex-col items-start justify-start text-left pt-24 pl-24 h-full w-full'>
-                        <h1 className='text-6xl font-jekobold leading-24'>
-                            Plus de 700 freelances <br /> ont changé de vie <br /> avec Hiway
-                        </h1>
-                        <h1 className='text-lg font-jekobold text-left mt-8'>
-                            Devenir freelance n&apos;a jamais été aussi simple qu&apos;avec Hiway.
-                        </h1>
-                        <p className='text-sm font-medium text-left mt-8'>
-                            On t&apos;accompagne à chaque étape, on gère tout pour que tu profites au maximum de ton statut et que tu
-                            t&apos;ouvres encore plus de perspectives.
-                        </p>
+                {isMobile ? (
+                    <div className='w-full rounded-xl bg-[#F6F6F6] flex flex-col justify-center items-center'>
+                        <div className='flex items-center justify-center'>
+                            <Image src={'/illustration.png'} alt='freelance' width={400} height={400} />
+                        </div>
+                        <div className='flex flex-col items-start justify-start text-left pt-24 pl-24 h-full w-full'>
+                            <h1 className='text-6xl font-jekobold leading-24'>
+                                Plus de 700 freelances <br /> ont changé de vie <br /> avec Hiway
+                            </h1>
+                            <h1 className='text-lg font-jekobold text-left mt-8'>
+                                Devenir freelance n&apos;a jamais été aussi simple qu&apos;avec Hiway.
+                            </h1>
+                            <p className='text-sm font-medium text-left mt-8'>
+                                On t&apos;accompagne à chaque étape, on gère tout pour que tu profites au maximum de ton statut et que tu
+                                t&apos;ouvres encore plus de perspectives.
+                            </p>
 
-                        <div className='flex space-x-4 mt-8'>
-                            <Link
-                                href={'https://hiway.fr'}
-                                className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-4 flex justify-center items-center text-[#F6F6F6] font-jekobold'
-                            >
-                                Se lancer avec Hiway
-                            </Link>
-                            <Link
-                                href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
-                                className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center bg-white font-jekobold'
-                            >
-                                <SlidersHorizontal className='h-4 w-4 mr-2 text-[#FF4140]' /> Simuler mon revenue
-                            </Link>
+                            <div className='flex space-x-4 mt-8'>
+                                <Link
+                                    href={'https://hiway.fr'}
+                                    className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-4 flex justify-center items-center text-[#F6F6F6] font-jekobold'
+                                >
+                                    Se lancer avec Hiway
+                                </Link>
+                                <Link
+                                    href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
+                                    className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center bg-white font-jekobold'
+                                >
+                                    <SlidersHorizontal className='h-4 w-4 mr-2 text-[#FF4140]' /> Simuler mon revenue
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                    <div className='flex items-center justify-center'>
-                        <Image src={'/illustration.png'} alt='freelance' width={400} height={400} />
+                ) : (
+                    <div className='w-full rounded-xl bg-[#F6F6F6] grid grid-cols-2 min-h-[628px]'>
+                        <div className='flex flex-col items-start justify-start text-left pt-24 pl-24 h-full w-full'>
+                            <h1 className='text-6xl font-jekobold leading-24'>
+                                Plus de 700 freelances <br /> ont changé de vie <br /> avec Hiway
+                            </h1>
+                            <h1 className='text-lg font-jekobold text-left mt-8'>
+                                Devenir freelance n&apos;a jamais été aussi simple qu&apos;avec Hiway.
+                            </h1>
+                            <p className='text-sm font-medium text-left mt-8'>
+                                On t&apos;accompagne à chaque étape, on gère tout pour que tu profites au maximum de ton statut et que tu
+                                t&apos;ouvres encore plus de perspectives.
+                            </p>
+
+                            <div className='flex space-x-4 mt-8'>
+                                <Link
+                                    href={'https://hiway.fr'}
+                                    className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-4 flex justify-center items-center text-[#F6F6F6] font-jekobold'
+                                >
+                                    Se lancer avec Hiway
+                                </Link>
+                                <Link
+                                    href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
+                                    className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center bg-white font-jekobold'
+                                >
+                                    <SlidersHorizontal className='h-4 w-4 mr-2 text-[#FF4140]' /> Simuler mon revenue
+                                </Link>
+                            </div>
+                        </div>
+                        <div className='flex items-center justify-center'>
+                            <Image src={'/illustration.png'} alt='freelance' width={400} height={400} />
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
 
             <div className='w-full px-12 pb-12'>
                 <div className='w-full rounded-xl bg-[#F6F6F6] pb-8'>
-                    <div className='grid grid-cols-3 h-full p-24 min-h-[507px] w-full justify-items-center'>
-                        <div className='flex flex-col items-start justify-start text-left h-full w-full'>
-                            <Image src={'/logo-big.png'} alt='icon' width={100} height={100} />
-                            <h1 className='text-2xl font-jekoblack leading-24 mt-8'>
-                                La meilleure expérience <br />
-                                pour devenir freelance
-                            </h1>
-                            <Link
-                                href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
-                                className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center mt-8 bg-white font-jekobold'
-                            >
-                                Simuler mon revenue de Freelance
-                            </Link>
-                        </div>
-                        <div className='flex flex-col items-start px-12 justify-start h-full w-full space-y-4'>
-                            <h1 className='font-jekoblack'>Accompagnement</h1>
-                            <p>On t&apos;aide à lancer ton activité</p>
-                            <p>On gère ta société au quotidien</p>
-                            <p>On t&apos;aide à bien préparer ton avenir</p>
-                        </div>
-                        <div className='flex flex-col items-start justify-start space-y-20 px-12'>
-                            <div className='flex flex-col w-full items-start justify-start space-y-4'>
-                                <h1 className='font-jekoblack'>Ressources</h1>
-                                <p className=''>Témoignages</p>
-                                <p>Simuler mon revenu</p>
-                                <p>Blog</p>
+                    {isMobile ? (
+                        <div className='flex flex-col justify-center items-center p-12 w-full'>
+                            <div className='flex flex-col items-start justify-start text-left h-full w-full'>
+                                <Image src={'/logo-big.png'} alt='icon' width={100} height={100} />
+                                <h1 className='text-2xl font-jekoblack leading-24 mt-8'>
+                                    La meilleure expérience <br />
+                                    pour devenir freelance
+                                </h1>
+                                <Link
+                                    href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
+                                    className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center mt-8 bg-white font-jekobold'
+                                >
+                                    Simuler mon revenue de Freelance
+                                </Link>
                             </div>
-                            <Link
-                                href={'https://hiway.fr/contact'}
-                                className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-4 flex justify-center items-center text-[#F6F6F6] font-jekobold'
-                            >
-                                Prendre rendez vous
-                            </Link>
+                            <div className='flex flex-col items-start px-12 justify-start h-full w-full space-y-4'>
+                                <h1 className='font-jekoblack'>Accompagnement</h1>
+                                <p>On t&apos;aide à lancer ton activité</p>
+                                <p>On gère ta société au quotidien</p>
+                                <p>On t&apos;aide à bien préparer ton avenir</p>
+                            </div>
+                            <div className='flex flex-col items-start justify-start space-y-20 px-12'>
+                                <div className='flex flex-col w-full items-start justify-start space-y-4'>
+                                    <h1 className='font-jekoblack'>Ressources</h1>
+                                    <p className=''>Témoignages</p>
+                                    <p>Simuler mon revenu</p>
+                                    <p>Blog</p>
+                                </div>
+                                <Link
+                                    href={'https://hiway.fr/contact'}
+                                    className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-4 flex justify-center items-center text-[#F6F6F6] font-jekobold'
+                                >
+                                    Prendre rendez vous
+                                </Link>
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className='grid grid-cols-3 h-full p-24 min-h-[507px] w-full justify-items-center'>
+                            <div className='flex flex-col items-start justify-start text-left h-full w-full'>
+                                <Image src={'/logo-big.png'} alt='icon' width={100} height={100} />
+                                <h1 className='text-2xl font-jekoblack leading-24 mt-8'>
+                                    La meilleure expérience <br />
+                                    pour devenir freelance
+                                </h1>
+                                <Link
+                                    href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
+                                    className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center mt-8 bg-white font-jekobold'
+                                >
+                                    Simuler mon revenue de Freelance
+                                </Link>
+                            </div>
+                            <div className='flex flex-col items-start px-12 justify-start h-full w-full space-y-4'>
+                                <h1 className='font-jekoblack'>Accompagnement</h1>
+                                <p>On t&apos;aide à lancer ton activité</p>
+                                <p>On gère ta société au quotidien</p>
+                                <p>On t&apos;aide à bien préparer ton avenir</p>
+                            </div>
+                            <div className='flex flex-col items-start justify-start space-y-20 px-12'>
+                                <div className='flex flex-col w-full items-start justify-start space-y-4'>
+                                    <h1 className='font-jekoblack'>Ressources</h1>
+                                    <p className=''>Témoignages</p>
+                                    <p>Simuler mon revenu</p>
+                                    <p>Blog</p>
+                                </div>
+                                <Link
+                                    href={'https://hiway.fr/contact'}
+                                    className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-4 flex justify-center items-center text-[#F6F6F6] font-jekobold'
+                                >
+                                    Prendre rendez vous
+                                </Link>
+                            </div>
+                        </div>
+                    )}
                     <div className='w-full flex flex-col items-center justify-center'>
                         <Separator className='max-w-[90%] bg-[#C7C7C7]' />
                         <div className='w-full px-12'>
-                            <div className={`flex ${isMobile && "flex-col"} w-full items-center justify-between pt-8 px-12`}>
-                                <div className={`flex items-center space-x-8 text-black font-jekobold text-sm`}>
-                                    <Link href="https://hiway.fr/legal">
+                            <div className={`flex ${isMobile && 'flex-col'} w-full items-center justify-between pt-8 px-12`}>
+                                <div className={`flex ${isMobile && 'flex-col'} items-center space-x-8 text-black font-jekobold text-sm`}>
+                                    <Link href='https://hiway.fr/legal'>
                                         <div>Mentions légales</div>
                                     </Link>
-                                    <Link href="https://hiway.fr/conditions">
+                                    <Link href='https://hiway.fr/conditions'>
                                         <div>Conditions générales d’utilisation (CGU)</div>
                                     </Link>
-                                    <Link href="https://hiway.fr/politics">
+                                    <Link href='https://hiway.fr/politics'>
                                         <div>Politique de confidentialité</div>
                                     </Link>
-                                    <Link href="https://hiway.fr/contact">
+                                    <Link href='https://hiway.fr/contact'>
                                         <div>Contacte-nous</div>
                                     </Link>
                                 </div>
@@ -148,7 +221,9 @@ export default function Footer() {
                                 </div>
                             </div>
                         </div>
-                        <div className='w-full px-24 pt-4 text-xs font-light text-[#ADADAD]'>© Copyright 2024 Hiway. Tous droits réservés.</div>
+                        <div className='w-full px-24 pt-4 text-xs font-light text-[#ADADAD]'>
+                            © Copyright 2024 Hiway. Tous droits réservés.
+                        </div>
                     </div>
                 </div>
             </div>
