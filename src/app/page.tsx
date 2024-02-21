@@ -22,15 +22,15 @@ export default function Home({ searchParams }: HomePageParams) {
         <div className='w-full'>
             <div className={'flex'}>
                 {/** Sidebar */}
-                <Sidebar categories={categories} tags={tags} />
+                <Sidebar categories={categories} tags={tags} selectedCategory={null} selectedTag={null} />
 
                 <div className={'flex flex-col p-8 w-full'}>
                     <MobileHeader />
                     {posts && posts.length > 0 && (
                         <>
-                           <MainPost post={posts[0]} /> 
+                            <MainPost post={posts[0]} />
 
-                           <PostList posts={posts} categories={categories} />
+                            <PostList posts={posts} categories={categories} />
                         </>
                     )}
 

@@ -26,7 +26,7 @@ export default function MainPost({ post }: { post: PostWithMedia }) {
             </div>
             <div className='ml-8 space-y-4'>
                 <div className='text-sm text-[#ff4140] text-start'>Se lancer - Micro-entrepreneur</div>
-                <div className='text-4xl xl:text-5xl 2xl:text-8xl font-jekoblack leading-[60px] text-start'>
+                <div className='text-4xl xl:text-5xl 2xl:text-7xl font-jekoblack leading-[60px] text-start'>
                     <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(he.decode(post.title.rendered))}</span>{' '}
                     {getTitleWithoutFirstWord(he.decode(post.title.rendered))}
                 </div>

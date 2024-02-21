@@ -4,7 +4,17 @@ import Link from 'next/link';
 import { isMobile } from 'react-device-detect';
 import { WP_REST_API_Term } from 'wp-types';
 
-export default function Sidebar({ categories, tags }: { categories: WP_REST_API_Term[]; tags: WP_REST_API_Term[] }) {
+export default function Sidebar({
+    categories,
+    tags,
+    selectedTag,
+    selectedCategory,
+}: {
+    categories: WP_REST_API_Term[];
+    tags: WP_REST_API_Term[];
+    selectedTag: WP_REST_API_Term | null;
+    selectedCategory: WP_REST_API_Term | null;
+}) {
     if (isMobile) {
         return null;
     }
@@ -41,7 +51,13 @@ export default function Sidebar({ categories, tags }: { categories: WP_REST_API_
                     Tout les sujets
                 </Link>
                 {categories.map((category) => (
-                    <Link key={category.id} href={`/category/${category.id}`} className='text-sm pb-1 hover:text-[#ff4140]'>
+                    <Link
+                        key={category.id}
+                        href={`/category/${category.id}`}
+                        className={`text-sm pb-1 hover:text-[#ff4140] ${
+                            selectedCategory && selectedCategory.id === category.id && 'font-jekoblack'
+                        }`}
+                    >
                         {category.name}
                     </Link>
                 ))}
@@ -52,7 +68,11 @@ export default function Sidebar({ categories, tags }: { categories: WP_REST_API_
                     Toutes les situations
                 </Link>
                 {tags.map((tag) => (
-                    <Link key={tag.id} href={`/tag/${tag.id}`} className='text-sm pb-1 hover:text-[#ff4140]'>
+                    <Link
+                        key={tag.id}
+                        href={`/tag/${tag.id}`}
+                        className={`text-sm pb-1 hover:text-[#ff4140] ${selectedTag && selectedTag.id === tag.id && 'font-jekoblack'}`}
+                    >
                         {tag.name}
                     </Link>
                 ))}

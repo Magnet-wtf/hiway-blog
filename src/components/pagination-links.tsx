@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link";
+import { isMobile } from "react-device-detect";
 
 export function PaginationLinks({
     currentPage,
@@ -12,7 +15,7 @@ export function PaginationLinks({
         .map((_, page) => page + 1);
 
     return (
-        <div className={'flex space-x-4 w-full items-center justify-center pt-8'}>
+        <div className={`flex space-x-4 w-full items-center justify-center pt-8 ${isMobile && "px-4 pt-12"}`}>
             {pagesArray.map((page) => {
                 const isSelected = page === currentPage;
                 const className = isSelected
