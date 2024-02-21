@@ -12,9 +12,9 @@ export default function Footer() {
         <div className='flex flex-col w-full'>
             <div className={`w-full ${isMobile ? "p-4" : "p-12" } mt-24`}>
                 {isMobile ? (
-                    <div className='w-full rounded-xl bg-[#F6F6F6] flex flex-col justify-center items-center'>
+                    <div className='w-full rounded-xl bg-[#F6F6F6] flex flex-col justify-center items-center pb-8'>
                         <div className='flex items-center justify-center'>
-                            <Image src={'/illustration.png'} alt='freelance' width={400} height={400} />
+                            <Image src={'/illustration.png'} alt='freelance' width={300} height={200} />
                         </div>
                         <div className='flex flex-col items-start justify-start text-left pt-12 px-4 h-full w-full'>
                             <div className='text-4xl font-jekobold leading-24'>
@@ -83,7 +83,7 @@ export default function Footer() {
             <div className={`w-full ${isMobile ? "px-4" : "px-12"} pb-12`}>
                 <div className='w-full rounded-xl bg-[#F6F6F6] pb-8'>
                     {isMobile ? (
-                        <div className='flex flex-col justify-center items-center p-12 w-full'>
+                        <div className={`flex flex-col justify-center items-center ${isMobile ? "p-4" : "p-12"} w-full`}>
                             <div className='flex flex-col items-start justify-start text-left h-full w-full'>
                                 <Image src={'/logo-big.png'} alt='icon' width={100} height={100} />
                                 <h1 className='text-2xl font-jekoblack leading-24 mt-8'>
@@ -92,12 +92,12 @@ export default function Footer() {
                                 </h1>
                                 <Link
                                     href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
-                                    className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center mt-8 bg-white font-jekobold'
+                                    className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center mt-8 bg-white font-jekobold text-sm'
                                 >
                                     Simuler mon revenue de Freelance
                                 </Link>
                             </div>
-                            <div className='flex flex-col items-start px-12 justify-start h-full w-full space-y-4'>
+                            <div className='flex flex-col items-start justify-start h-full w-full space-y-4 mt-8'>
                                 <h1 className='font-jekoblack'>Accompagnement</h1>
                                 <p>On t&apos;aide à lancer ton activité</p>
                                 <p>On gère ta société au quotidien</p>
