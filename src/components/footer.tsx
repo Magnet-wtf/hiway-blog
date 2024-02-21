@@ -112,7 +112,7 @@ export default function Footer() {
                                 </div>
                                 <Link
                                     href={'https://hiway.fr/contact'}
-                                    className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-4 flex justify-center items-center text-[#F6F6F6] font-jekobold'
+                                    className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-4 flex justify-center items-center text-[#F6F6F6] font-jekobold mt-8'
                                 >
                                     Prendre rendez vous
                                 </Link>
@@ -174,7 +174,7 @@ export default function Footer() {
                                     </Link>
                                 </div>
 
-                                <div className='flex items-center space-x-4'>
+                                <div className={`flex items-center space-x-4 ${isMobile && "mt-8"}`}>
                                     <Link href='https://www.linkedin.com/company/hiwayfreelance/?originalSubdomain=fr'>
                                         <svg width='20' height='21' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                             <path
