@@ -103,7 +103,7 @@ export default function Footer() {
                                 <p>On gère ta société au quotidien</p>
                                 <p>On t&apos;aide à bien préparer ton avenir</p>
                             </div>
-                            <div className='flex flex-col items-start justify-start space-y-4 mt-8'>
+                            <div className='flex flex-col items-start justify-start h-full w-full space-y-4 mt-8'>
                                 <div className='flex flex-col w-full items-start justify-start space-y-4'>
                                     <h1 className='font-jekoblack'>Ressources</h1>
                                     <p className=''>Témoignages</p>
@@ -159,7 +159,7 @@ export default function Footer() {
                         <Separator className='max-w-[90%] bg-[#C7C7C7]' />
                         <div className='w-full px-12'>
                             <div className={`flex ${isMobile && 'flex-col'} w-full items-center justify-between pt-8 px-12`}>
-                                <div className={`flex ${isMobile && 'flex-col'} items-center ${isMobile ? "space-y-4 justify-center" : "space-x-8"} text-black font-jekobold text-sm`}>
+                                <div className={`flex ${isMobile && 'flex-col'} items-center ${isMobile ? "space-y-4 justify-center text-center" : "space-x-8"} text-black font-jekobold text-sm`}>
                                     <Link href='https://hiway.fr/legal'>
                                         <div>Mentions légales</div>
                                     </Link>
