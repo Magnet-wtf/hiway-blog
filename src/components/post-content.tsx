@@ -62,7 +62,7 @@ export default function PostContent({post, category, tag}: {post: PostWithMedia,
                             )}
                             {tag.name && <Badge className='bg-[#FDB813] text-black font-jekobold py-2 px-2'>{tag.name}</Badge>}
                         </div>
-                        <h1 className={'text-6xl font-bold max-w-[800px] font-jekoblack'}>
+                        <h1 className={`${isMobile ? "text-5xl" : "text-6xl"} font-bold max-w-[800px] font-jekoblack`}>
                             <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(he.decode(post.title.rendered))}</span>{' '}
                             {getTitleWithoutFirstWord(he.decode(post.title.rendered))}
                         </h1>
