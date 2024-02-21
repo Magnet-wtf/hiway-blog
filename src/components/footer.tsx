@@ -10,16 +10,16 @@ import { isMobile } from 'react-device-detect';
 export default function Footer() {
     return (
         <div className='flex flex-col w-full'>
-            <div className='w-full p-12 mt-24'>
+            <div className={`w-full ${isMobile ? "p-4" : "p-12" } mt-24`}>
                 {isMobile ? (
                     <div className='w-full rounded-xl bg-[#F6F6F6] flex flex-col justify-center items-center'>
                         <div className='flex items-center justify-center'>
                             <Image src={'/illustration.png'} alt='freelance' width={400} height={400} />
                         </div>
-                        <div className='flex flex-col items-start justify-start text-left pt-24 pl-24 h-full w-full'>
-                            <h1 className='text-6xl font-jekobold leading-24'>
+                        <div className='flex flex-col items-start justify-start text-left pt-12 px-4 h-full w-full'>
+                            <div className='text-4xl font-jekobold leading-24'>
                                 Plus de 700 freelances <br /> ont changé de vie <br /> avec Hiway
-                            </h1>
+                            </div>
                             <h1 className='text-lg font-jekobold text-left mt-8'>
                                 Devenir freelance n&apos;a jamais été aussi simple qu&apos;avec Hiway.
                             </h1>
@@ -28,7 +28,7 @@ export default function Footer() {
                                 t&apos;ouvres encore plus de perspectives.
                             </p>
 
-                            <div className='flex space-x-4 mt-8'>
+                            <div className='flex flex-col w-full space-y-4 mt-8'>
                                 <Link
                                     href={'https://hiway.fr'}
                                     className='rounded-full bg-[#FF4140] border-[#FF4140] border-2 hover:bg-[#F6F6F6] hover:text-[#FF4140] px-4 py-4 flex justify-center items-center text-[#F6F6F6] font-jekobold'
@@ -80,14 +80,14 @@ export default function Footer() {
                 )}
             </div>
 
-            <div className='w-full px-12 pb-12'>
+            <div className={`w-full ${isMobile ? "px-4" : "px-12"} pb-12`}>
                 <div className='w-full rounded-xl bg-[#F6F6F6] pb-8'>
                     {isMobile ? (
                         <div className='flex flex-col justify-center items-center p-12 w-full'>
                             <div className='flex flex-col items-start justify-start text-left h-full w-full'>
                                 <Image src={'/logo-big.png'} alt='icon' width={100} height={100} />
                                 <h1 className='text-2xl font-jekoblack leading-24 mt-8'>
-                                    La meilleure expérience <br />
+                                    La meilleure expérience
                                     pour devenir freelance
                                 </h1>
                                 <Link
