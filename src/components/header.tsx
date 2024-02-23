@@ -122,14 +122,14 @@ export default function Header({ categories, tags }: { categories: WP_REST_API_T
                                     Simulation revenu de freelance
                                 </Link>
                                 <div className={'flex flex-col mt-12'}>
-                                    <Link href={'/'} className={'text-sm font-bold font-jekobold text-[#ff4140] pb-2'}>
+                                    <Link href={'/'} className={'text-lg font-bold font-jekobold text-[#ff4140] pb-2'}>
                                         Tout les sujets
                                     </Link>
                                     {categories.map((category) => (
                                         <Link
                                             key={category.id}
                                             href={`/category/${category.slug}`}
-                                            className={`text-sm pb-1 hover:text-[#ff4140] ${
+                                            className={`font-medium text-lg pb-1 hover:text-[#ff4140] ${
                                                 selectedCategory && selectedCategory.id === category.id && 'font-jekoblack'
                                             }`}
                                         >
@@ -139,14 +139,14 @@ export default function Header({ categories, tags }: { categories: WP_REST_API_T
                                 </div>
 
                                 <div className={'flex flex-col mt-12'}>
-                                    <Link href={'/'} className={'text-sm font-jekobold text-[#ff4140] pb-2'}>
+                                    <Link href={'/'} className={'text-lg font-jekobold text-[#ff4140] pb-2'}>
                                         Toutes les situations
                                     </Link>
                                     {tags.map((tag) => (
                                         <Link
                                             key={tag.id}
                                             href={`/tag/${tag.slug}`}
-                                            className={`text-sm pb-1 hover:text-[#ff4140] ${
+                                            className={`font-medium text-lg pb-1 hover:text-[#ff4140] ${
                                                 selectedTag && selectedTag.id === tag.id && 'font-jekoblack'
                                             }`}
                                         >
