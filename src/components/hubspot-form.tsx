@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-export default function HubSpotForm() {
+export default function HubSpotForm({ onSubmit }: { onSubmit: () => void }) {
     useEffect(() => {
         const script = document.createElement('script');
         script.src = 'https://js-eu1.hsforms.net/forms/v2.js';
@@ -17,10 +17,13 @@ export default function HubSpotForm() {
                     portalId: '139647359',
                     formId: '195dabae-a9b3-48b8-8247-687f0df8bf6c',
                     target: '#hubspotForm',
+                    onFormSubmit: function ($form: any) {
+                        onSubmit();
+                    },
                 });
             }
         });
     }, []);
 
-    return <div id='hubspotForm' className='hubspotForm'></div>;
+    return <div id='hubspotForm' className=''></div>;
 }

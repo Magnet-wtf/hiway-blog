@@ -13,6 +13,7 @@ import he from 'he';
 import { WP_REST_API_Term } from 'wp-types';
 import { isMobile } from 'react-device-detect';
 import { createRef, useRef } from 'react';
+import DialogForm from './form-dialog';
 
 export default function PostContent({
     post,
@@ -72,7 +73,8 @@ export default function PostContent({
         }
     };
     return (
-        <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? 'px-24' : 'px-8'} py-12`}>
+        <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? 'px-24' : 'px-8'} py-12`} id="toPDF">
+            <DialogForm />
             <div className={'flex flex-col space-y-2'}>
                 <div className='flex space-x-4 mb-4'>
                     {category && (

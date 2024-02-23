@@ -165,3 +165,26 @@ pre {
   max-width: 64rem;
   white-space: pre-wrap;
 }
+
+#hubspotForm {
+  .input {
+    @apply border border-border;
+    @apply rounded-xl;
+    @apply p-2;
+    @apply w-full;
+    @apply text-foreground;
+    @apply bg-card;
+    @apply mb-4
+  }
+
+  .hs-button {
+    @apply bg-primary;
+    @apply text-primary-foreground;
+    @apply rounded-xl;
+    @apply p-2;
+    @apply w-full;
+    @apply text-center;
+    @apply mb-4;
+    @apply cursor-pointer;
+  }
+}
