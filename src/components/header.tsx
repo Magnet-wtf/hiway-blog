@@ -15,9 +15,15 @@ import {
     NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { isMobile } from 'react-device-detect';
+import { WP_REST_API_Term } from 'wp-types';
+import { useParams } from 'next/navigation';
 
-export default function Header() {
+export default function Header({ categories, tags }: { categories: WP_REST_API_Term[]; tags: WP_REST_API_Term[] }) {
+    const params = useParams();
+    const selectedCategory = categories.find((category) => category.slug === params.slug);
+    const selectedTag = tags.find((tag) => tag.slug === params.slug);
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
     return (
         <div className={'w-full flex flex-col'}>
             <div className='w-full h-[56px] p-4 flex items-center justify-between shadow-xl'>
@@ -115,6 +121,39 @@ export default function Header() {
                                 <Link href='https://hiway.fr/simulateur?s=salarieClientFinal' className='font-medium text-lg'>
                                     Simulation revenu de freelance
                                 </Link>
+                                <div className={'flex flex-col mt-12'}>
+                                    <Link href={'/'} className={'text-sm font-bold font-jekobold text-[#ff4140] pb-2'}>
+                                        Tout les sujets
+                                    </Link>
+                                    {categories.map((category) => (
+                                        <Link
+                                            key={category.id}
+                                            href={`/category/${category.slug}`}
+                                            className={`text-sm pb-1 hover:text-[#ff4140] ${
+                                                selectedCategory && selectedCategory.id === category.id && 'font-jekoblack'
+                                            }`}
+                                        >
+                                            {category.name}
+                                        </Link>
+                                    ))}
+                                </div>
+
+                                <div className={'flex flex-col mt-12'}>
+                                    <Link href={'/'} className={'text-sm font-jekobold text-[#ff4140] pb-2'}>
+                                        Toutes les situations
+                                    </Link>
+                                    {tags.map((tag) => (
+                                        <Link
+                                            key={tag.id}
+                                            href={`/tag/${tag.slug}`}
+                                            className={`text-sm pb-1 hover:text-[#ff4140] ${
+                                                selectedTag && selectedTag.id === tag.id && 'font-jekoblack'
+                                            }`}
+                                        >
+                                            {tag.name}
+                                        </Link>
+                                    ))}
+                                </div>
                                 <Link href='/' title='Blog' />
                             </div>
 
