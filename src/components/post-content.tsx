@@ -12,6 +12,7 @@ import parse, { domToReact } from 'html-react-parser';
 import he from 'he';
 import { WP_REST_API_Term } from 'wp-types';
 import { isMobile } from 'react-device-detect';
+import { createRef, useRef } from 'react';
 
 export default function PostContent({
     post,
@@ -31,7 +32,11 @@ export default function PostContent({
             }
 
             if (attribs.id === 'h2') {
-                return <div style={{ fontSize: 42 }}>{domToReact(children, options)}</div>;
+                return (
+                    <div style={{ fontSize: 42 }}>
+                        {domToReact(children, options)}
+                    </div>
+                );
             }
 
             if (attribs.class === 'prettify') {
@@ -65,7 +70,7 @@ export default function PostContent({
         } else {
             return posts;
         }
-    }
+    };
     return (
         <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? 'px-24' : 'px-8'} py-12`}>
             <div className={'flex flex-col space-y-2'}>

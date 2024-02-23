@@ -2,8 +2,7 @@ import { use } from 'react';
 import { notFound } from 'next/navigation';
 
 import wpService from '@/lib/wordpress/wp-service';
-import PostSidebar from '@/components/post-sidebar';
-import PostContent from '@/components/post-content';
+import SinglePost from '@/components/single-post';
 
 interface PostPageParams {
     params: {
@@ -33,12 +32,7 @@ function PostPage({ params }: PostPageParams) {
 
     return (
         <div className={'w-full'}>
-            <div className={'flex'}>
-                {/** Sidebar */}
-                <PostSidebar post={post} />
-
-                <PostContent post={post} tag={tag} category={category} filteredPosts={filteredPosts} />
-            </div>
+            <SinglePost post={post} category={category} tag={tag} filteredPosts={filteredPosts} />
         </div>
     );
 }

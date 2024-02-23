@@ -15,7 +15,7 @@ import PostList from '@/components/post-list';
 interface PostPageParams {
     params: {
         page: string;
-        slug: number;
+        slug: string;
     };
 }
 
@@ -24,8 +24,12 @@ function TagsPage({ params }: PostPageParams) {
     const categories = use(wpService.getCategories());
     const tags = use(wpService.getTags());
 
-    const filteredPosts = posts ? posts.filter((post) => post.tags?.includes(Number(params.slug))) : [];
-    const selectedTag = tags ? tags.find((tag) => tag.id === Number(params.slug)) : null;
+    const findTag = (slug: string) => {
+        return tags.find((tag) => tag.slug === slug);
+    }
+
+    const filteredPosts = posts ? posts.filter((post) => post.tags?.includes(findTag(params.slug)?.id || 0)) : [];
+    const selectedTag = findTag(params.slug);
 
     return (
         <div className='w-full'>

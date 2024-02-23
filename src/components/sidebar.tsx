@@ -53,7 +53,7 @@ export default function Sidebar({
                 {categories.map((category) => (
                     <Link
                         key={category.id}
-                        href={`/category/${category.id}`}
+                        href={`/category/${category.slug}`}
                         className={`text-sm pb-1 hover:text-[#ff4140] ${
                             selectedCategory && selectedCategory.id === category.id && 'font-jekoblack'
                         }`}
@@ -70,7 +70,7 @@ export default function Sidebar({
                 {tags.map((tag) => (
                     <Link
                         key={tag.id}
-                        href={`/tag/${tag.id}`}
+                        href={`/tag/${tag.slug}`}
                         className={`text-sm pb-1 hover:text-[#ff4140] ${selectedTag && selectedTag.id === tag.id && 'font-jekoblack'}`}
                     >
                         {tag.name}
