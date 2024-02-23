@@ -19,8 +19,7 @@ interface PostPageParams {
 }
 
 function CategoriesPage({ params }: PostPageParams) {
-    const page = params.page ? parseInt(params.page) : 1;
-    const { posts, totalPages } = use(wpService.getPosts({ page }));
+    const { posts, totalPages } = use(wpService.getPosts());
     const categories = use(wpService.getCategories());
     const tags = use(wpService.getTags());
 
@@ -38,8 +37,6 @@ function CategoriesPage({ params }: PostPageParams) {
 
                     {filteredPosts && filteredPosts.length > 0 && <MainPost post={filteredPosts[0]} />}
                     {filteredPosts && filteredPosts.length > 1 && <PostList posts={filteredPosts} categories={categories} />}
-
-                    <PaginationLinks currentPage={page} totalPages={totalPages} />
                 </div>
             </div>
         </div>

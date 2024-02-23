@@ -13,12 +13,33 @@ export default function PostList({ posts, categories }: { posts: PostWithMedia[]
         return category ? category.name : '';
     };
 
-    return (
-        <div className={`grid grid-cols-1 gap-8 ${!isMobile  && " md:grid-cols-2 xl:grid-cols-3 md:gap-8 xl:gap-12 p-8 xl:p-8"} w-full`}>
-            {[
+    const buildPostsArray = (posts: PostWithMedia[]) => {
+        if(isMobile) {
+            return [
                 ...posts.slice(0, 5), // Take the first 5 posts
                 {} as any, // Add a placeholder for the CTA
                 ...posts.slice(5), // Take the rest of the posts after the 5th one
+            ]
+        }
+
+        if(posts.length < 6) {
+            return [
+                ...posts,
+                {} as any,
+            ]
+        }
+
+        return [
+            ...posts.slice(1, 6), // Take the first 5 posts
+            {} as any, // Add a placeholder for the CTA
+            ...posts.slice(6), // Take the rest of the posts after the 5th one
+        ];
+    }
+
+    return (
+        <div className={`grid grid-cols-1 gap-8 ${!isMobile  && " md:grid-cols-2 xl:grid-cols-3 md:gap-8 xl:gap-12 p-8 xl:p-8"} w-full`}>
+            {[
+                ...buildPostsArray(posts),
             ].map((post, index) => {
                 if (index === 5) {
                     return (

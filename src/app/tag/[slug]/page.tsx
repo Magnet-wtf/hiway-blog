@@ -20,26 +20,12 @@ interface PostPageParams {
 }
 
 function TagsPage({ params }: PostPageParams) {
-    const page = params.page ? parseInt(params.page) : 1;
-    const { posts, totalPages } = use(wpService.getPosts({ page }));
+    const { posts, totalPages } = use(wpService.getPosts());
     const categories = use(wpService.getCategories());
     const tags = use(wpService.getTags());
 
     const filteredPosts = posts ? posts.filter((post) => post.tags?.includes(Number(params.slug))) : [];
     const selectedTag = tags ? tags.find((tag) => tag.id === Number(params.slug)) : null;
-
-    const getTitleFirstWord = (title: string) => {
-        return title.split(' ')[0];
-    };
-
-    const getTitleWithoutFirstWord = (title: string) => {
-        return title.split(' ').slice(1).join(' ');
-    };
-
-    const getCategoryName = (categoryIds: number[]) => {
-        const category = categories.find((category) => category.id === categoryIds[0]);
-        return category ? category.name : '';
-    };
 
     return (
         <div className='w-full'>
@@ -52,8 +38,6 @@ function TagsPage({ params }: PostPageParams) {
 
                     {filteredPosts && filteredPosts.length > 0 && <MainPost post={filteredPosts[0]} />}
                     {filteredPosts && filteredPosts.length > 1 && <PostList posts={filteredPosts} categories={categories} />}
-
-                    <PaginationLinks currentPage={page} totalPages={totalPages} />
                 </div>
             </div>
         </div>

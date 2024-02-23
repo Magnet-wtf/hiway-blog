@@ -7,7 +7,7 @@ const API_VERSION = process.env.WORDPRESS_API_VERSION ?? "v2";
 const BASE_URL = `${API_BASE_URL}/wp/${API_VERSION}/`;
  
 const DEFAULT_POSTS_PARAMS = {
-  per_page: 8,
+  per_page: 9,
   page: 1,
   search: "",
   slug: <string[]>[],
@@ -31,6 +31,10 @@ export default class WpClient {
     posts: PostWithMedia[];
     totalPages: number;
   }> {
+    if (!params.page) {
+      params.per_page = 99;
+    }
+    
     const queryParams = this.queryString({
       ...DEFAULT_POSTS_PARAMS,
       ...params,
