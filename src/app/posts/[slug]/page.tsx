@@ -24,7 +24,7 @@ function PostPage({ params }: PostPageParams) {
     const tag = use(wpService.getTag((post && post.tags && post?.tags[0]) || 0));
     const category = use(wpService.getCategory((post && post.categories && post?.categories[0]) || 0));
 
-    const filteredPosts = allPosts.filter((post) => post.categories?.includes(category.id));
+    const filteredPosts = allPosts.filter((post) => post.categories?.includes(category.id) && post.id !== post.id);
 
     if (!post) {
         notFound();

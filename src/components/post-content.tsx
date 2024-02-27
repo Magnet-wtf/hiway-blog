@@ -33,11 +33,7 @@ export default function PostContent({
             }
 
             if (attribs.id === 'h2') {
-                return (
-                    <div style={{ fontSize: 42 }}>
-                        {domToReact(children, options)}
-                    </div>
-                );
+                return <div style={{ fontSize: 42 }}>{domToReact(children, options)}</div>;
             }
 
             if (attribs.class === 'prettify') {
@@ -73,19 +69,26 @@ export default function PostContent({
         }
     };
     return (
-        <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? 'px-24' : 'px-8'} py-12`} id="toPDF">
+        <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? 'px-24' : 'px-8'} py-12`} id='toPDF'>
             <DialogForm />
             <div className={'flex flex-col space-y-2'}>
                 <div className='flex space-x-4 mb-4'>
                     {category && (
                         <Link
-                            href={`/category/${category.id}`}
+                            href={`/category/${category.slug}`}
                             className='bg-[#FDB813] rounded-full text-black hover:bg-white border-2 border-[#fdb814] font-jekobold py-2 px-2'
                         >
                             {category?.name}
                         </Link>
                     )}
-                    {tag.name && <Badge className='bg-[#FDB813] text-black font-jekobold py-2 px-2'>{tag.name}</Badge>}
+                    {tag.name && (
+                        <Link
+                            href={`/tag/${tag.slug}`}
+                            className='bg-[#FDB813] rounded-full text-black hover:bg-white border-2 border-[#fdb814] font-jekobold py-2 px-2'
+                        >
+                            {tag?.name}
+                        </Link>
+                    )}
                 </div>
                 <h1 className={`${isMobile ? 'text-4xl' : 'text-6xl'} font-bold max-w-[800px] font-jekoblack`}>
                     <span className='text-[#ff4140] font-jekoblack'>{getTitleFirstWord(he.decode(post.title.rendered))}</span>{' '}
