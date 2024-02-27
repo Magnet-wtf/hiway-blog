@@ -16,7 +16,9 @@ export default function CTA() {
                 <div className='flex flex-col items-start justify-center text-start h-full pt-8'>
                     <div className='text-white text-2xl font-bold'>Simule ton revenu de freelance</div>
                     {isMobile ? (
-                        <p className='text-white text-sm font-thin mt-4'>En moyenne, les freelances Hiway gagnent 7100 € nets / mois avant IR</p>
+                        <p className='text-white text-sm font-thin mt-4'>
+                            En moyenne, les freelances Hiway gagnent 7100 € nets / mois avant IR
+                        </p>
                     ) : (
                         <p className='text-white text-sm font-thin'>
                             En moyenne, les freelances Hiway gagnent 7100 € <br /> nets / mois avant IR
@@ -30,7 +32,7 @@ export default function CTA() {
                         className='rounded-full bg-white text-black font-jekobold px-4 py-4 flex items-center justify-center'
                     >
                         <SlidersHorizontal className='h-6 w-6 mr-4 text-black' />
-                        Simuler mon revenue
+                        Simuler mon revenu
                     </Link>
                 </div>
             </div>

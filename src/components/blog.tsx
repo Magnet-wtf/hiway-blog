@@ -48,7 +48,7 @@ export default function Blog({ page = 1 }: { page?: number }) {
                 <div className='flex space-x-4'>
                     <Button className='rounded-full bg-[#FF4140]'>Nous contacter</Button>
                     <Button variant='outline' className='rounded-full border-[#FF4140] border-2'>
-                        Simuler mon revenue
+                        Simuler mon revenu
                     </Button>
                     <Button className='rounded-full px-2 bg-[#FF4140]'>
                         <User className='h-6 w-6' />
@@ -116,8 +116,8 @@ export default function Blog({ page = 1 }: { page?: number }) {
                 <div className={'flex flex-col space-y-8 p-4 w-full pt-8'}>
                     {loading ? (
                         <>
-                        <MainLoadingSkeleton />
-                        <LoadingSkeleton />
+                            <MainLoadingSkeleton />
+                            <LoadingSkeleton />
                         </>
                     ) : (
                         <>
@@ -172,7 +172,7 @@ export default function Blog({ page = 1 }: { page?: number }) {
                                 <div className='flex space-x-4 mt-8'>
                                     <Button className='rounded-full bg-[#FF4140]'>Se lancer avec Hiway</Button>
                                     <Button variant='outline' className='rounded-full border-[#FF4140] border-2'>
-                                        Simuler mon revenue
+                                        Simuler mon revenu
                                     </Button>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@ export default function Blog({ page = 1 }: { page?: number }) {
                                         pour devenir freelance
                                     </h1>
                                     <Button variant='outline' size='lg' className='rounded-full border-[#FF4140] border-2 mt-8'>
-                                        Simuler mon revenue
+                                        Simuler mon revenu
                                     </Button>
                                 </div>
                                 <div className='flex flex-col items-start px-12 justify-start h-full w-full space-y-4'>

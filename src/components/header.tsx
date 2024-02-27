@@ -77,7 +77,7 @@ export default function Header({ categories, tags }: { categories: WP_REST_API_T
 
                         <Button className='rounded-full bg-[#F96547]'>Nous contacter</Button>
                         <Button variant='outline' className='rounded-full border-[#f96547] border-2'>
-                            Simuler mon revenue
+                            Simuler mon revenu
                         </Button>
                         <Button className='rounded-full px-2 bg-[#F96547]'>
                             <User className='h-6 w-6' />
@@ -160,7 +160,7 @@ export default function Header({ categories, tags }: { categories: WP_REST_API_T
                             <div className='py-6 flex flex-col space-y-6'>
                                 <Button className='rounded-full bg-[#F96547]'>Nous contacter</Button>
                                 <Button variant='outline' className='rounded-full border-[#f96547] border-2'>
-                                    Simuler mon revenue
+                                    Simuler mon revenu
                                 </Button>
                             </div>
                         </div>

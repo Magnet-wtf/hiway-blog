@@ -39,7 +39,7 @@ export default function Footer() {
                                     href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
                                     className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center bg-white font-jekobold'
                                 >
-                                    <SlidersHorizontal className='h-4 w-4 mr-2 text-[#FF4140]' /> Simuler mon revenue
+                                    <SlidersHorizontal className='h-4 w-4 mr-2 text-[#FF4140]' /> Simuler mon revenu
                                 </Link>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ export default function Footer() {
                                     href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
                                     className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center bg-white font-jekobold'
                                 >
-                                    <SlidersHorizontal className='h-4 w-4 mr-2 text-[#FF4140]' /> Simuler mon revenue
+                                    <SlidersHorizontal className='h-4 w-4 mr-2 text-[#FF4140]' /> Simuler mon revenu
                                 </Link>
                             </div>
                         </div>
@@ -94,7 +94,7 @@ export default function Footer() {
                                     href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
                                     className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center mt-8 bg-white font-jekobold text-sm'
                                 >
-                                    Simuler mon revenue de Freelance
+                                    Simuler mon revenu de Freelance
                                 </Link>
                             </div>
                             <div className='flex flex-col items-start justify-start h-full w-full space-y-4 mt-8'>
@@ -130,7 +130,7 @@ export default function Footer() {
                                     href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
                                     className='rounded-full border-[#FF4140] border-2 px-4 py-4 flex justify-center items-center mt-8 bg-white font-jekobold'
                                 >
-                                    Simuler mon revenue de Freelance
+                                    Simuler mon revenu de Freelance
                                 </Link>
                             </div>
                             <div className='flex flex-col items-start px-12 justify-start h-full w-full space-y-4'>
