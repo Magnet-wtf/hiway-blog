@@ -26,14 +26,14 @@ export default function Header({ categories, tags }: { categories: WP_REST_API_T
 
     return (
         <div className={'w-full flex flex-col'}>
-            <div className='w-full h-[56px] p-4 flex items-center justify-between shadow-xl'>
+            <div className='w-full h-[68px] p-4 flex items-center justify-between shadow-xl'>
                 {isMobile && (
                     <Button className='rounded-full px-2 bg-transparent'>
                         <User className='h-6 w-6 text-black' />
                     </Button>
                 )}
-                <Link href='/'>
-                    <Image src='/logo.png' alt='logo' width={45} height={45} />
+                <Link href='/' className='pl-[42px]'>
+                    <Image src='/logo-big.png' alt='logo' width={60} height={60} />
                 </Link>
                 {!isMobile ? (
                     <div className='flex space-x-4 items-center'>
