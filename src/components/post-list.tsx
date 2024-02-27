@@ -38,7 +38,7 @@ export default function PostList({ posts, categories }: { posts: PostWithMedia[]
 
     return (
         <div className={`grid grid-cols-1 gap-8 ${!isMobile  && " md:grid-cols-2 xl:grid-cols-3 md:gap-8 xl:gap-12 p-8 xl:p-8"} w-full`}>
-            {[
+            {posts && posts.length > 0 && [
                 ...buildPostsArray(posts),
             ].map((post, index) => {
                 if (index === 5) {
@@ -79,8 +79,8 @@ export default function PostList({ posts, categories }: { posts: PostWithMedia[]
                                 {post.categories && (
                                     <div className='text-sm text-[#ff4140] text-start'>{getCategoryName(post.categories)}</div>
                                 )}
-                                <div className='font-black text-lg font-jekoblack text-start'>{he.decode(post.title.rendered)}</div>
-                                <span>{post.excerpt.protected}</span>
+                                <div className='font-black text-lg font-jekoblack text-start'>{post && post.title ? he.decode(post.title.rendered) : ""}</div>
+                                <span>{post && post.excerpt && post.excerpt.protected}</span>
                             </div>
                         </div>
                     </Link>

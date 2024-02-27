@@ -24,7 +24,7 @@ function CategoriesPage({ params }: PostPageParams) {
     const tags = use(wpService.getTags());
 
     const findCategory = (slug: string) => {
-        return categories.find((category) => category.slug === slug);
+        return categories.find((category) => category.slug === slug) || null;
     }
 
     const filteredPosts = posts ? posts.filter((post) => post.categories?.includes(findCategory(params.slug)?.id || 0)) : [];
