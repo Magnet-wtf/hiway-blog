@@ -74,7 +74,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className='flex items-center justify-center'>
-                            <Image src={'/illustration.png'} alt='freelance' width={400} height={400} />
+                            <Image src={'/illustration.png'} alt='freelance' width={500} height={500} />
                         </div>
                     </div>
                 )}
