@@ -10,7 +10,7 @@ import { isMobile } from 'react-device-detect';
 export default function Footer() {
     return (
         <div className='flex flex-col w-full'>
-            <div className={`w-full ${isMobile ? "p-4" : "p-12" } mt-24`}>
+            <div className={`w-full ${isMobile ? 'p-4' : 'p-12'} mt-24`}>
                 {isMobile ? (
                     <div className='w-full rounded-xl bg-[#F6F6F6] flex flex-col justify-center items-center pb-8'>
                         <div className='flex items-center justify-center pt-8'>
@@ -80,15 +80,14 @@ export default function Footer() {
                 )}
             </div>
 
-            <div className={`w-full ${isMobile ? "px-4" : "px-12"} pb-12`}>
+            <div className={`w-full ${isMobile ? 'px-4' : 'px-12'} pb-12`}>
                 <div className='w-full rounded-xl bg-[#F6F6F6] pb-8'>
                     {isMobile ? (
-                        <div className={`flex flex-col justify-center items-center ${isMobile ? "p-4" : "p-12"} w-full`}>
+                        <div className={`flex flex-col justify-center items-center ${isMobile ? 'p-4' : 'p-12'} w-full`}>
                             <div className='flex flex-col items-start justify-start text-left h-full w-full'>
                                 <Image src={'/logo-big.png'} alt='icon' width={100} height={100} />
                                 <div className='text-2xl font-jekoblack leading-24 mt-8'>
-                                    La meilleure expérience
-                                    pour devenir freelance
+                                    La meilleure expérience pour devenir freelance
                                 </div>
                                 <Link
                                     href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
@@ -99,16 +98,37 @@ export default function Footer() {
                             </div>
                             <div className='flex flex-col items-start justify-start h-full w-full space-y-4 mt-8'>
                                 <div className='font-jekoblack'>Accompagnement</div>
-                                <p>On t&apos;aide à lancer ton activité</p>
-                                <p>On gère ta société au quotidien</p>
-                                <p>On t&apos;aide à bien préparer ton avenir</p>
+                                <Link className='font-jekobold text-[#484848] cursor-pointer' href={'https://hiway.fr/devenir-freelance'}>
+                                    On t&apos;aide à lancer ton activité
+                                </Link>
+                                <Link
+                                    className='font-jekobold text-[#484848] cursor-pointer'
+                                    href={'https://hiway.fr/plateforme-accompagnement-freelance'}
+                                >
+                                    On gère ta société au quotidien
+                                </Link>
+                                <Link
+                                    className='font-jekobold text-[#484848] cursor-pointer'
+                                    href={'https://hiway.fr/investir-patrimoine-freelance'}
+                                >
+                                    On t&apos;aide à bien préparer ton avenir
+                                </Link>
                             </div>
                             <div className='flex flex-col items-start justify-start h-full w-full space-y-4 mt-8'>
                                 <div className='flex flex-col w-full items-start justify-start space-y-4 pb-12'>
                                     <div className='font-jekoblack'>Ressources</div>
-                                    <p className=''>Témoignages</p>
-                                    <p>Simuler mon revenu</p>
-                                    <p>Blog</p>
+                                    <Link className='font-jekobold text-[#484848] cursor-pointer' href={'https://hiway.fr/testimonials'}>
+                                        Témoignages
+                                    </Link>
+                                    <Link
+                                        className='font-jekobold text-[#484848] cursor-pointer'
+                                        href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
+                                    >
+                                        Simuler mon revenu
+                                    </Link>
+                                    <Link className='font-jekobold text-[#484848] cursor-pointer' href={'/'}>
+                                        Blog
+                                    </Link>
                                 </div>
                                 <Link
                                     href={'https://hiway.fr/contact'}
@@ -135,16 +155,37 @@ export default function Footer() {
                             </div>
                             <div className='flex flex-col items-start px-12 justify-start h-full w-full space-y-4'>
                                 <div className='font-jekoblack'>Accompagnement</div>
-                                <p>On t&apos;aide à lancer ton activité</p>
-                                <p>On gère ta société au quotidien</p>
-                                <p>On t&apos;aide à bien préparer ton avenir</p>
+                                <Link className='font-jekobold text-[#484848] cursor-pointer' href={'https://hiway.fr/devenir-freelance'}>
+                                    On t&apos;aide à lancer ton activité
+                                </Link>
+                                <Link
+                                    className='font-jekobold text-[#484848] cursor-pointer'
+                                    href={'https://hiway.fr/plateforme-accompagnement-freelance'}
+                                >
+                                    On gère ta société au quotidien
+                                </Link>
+                                <Link
+                                    className='font-jekobold text-[#484848] cursor-pointer'
+                                    href={'https://hiway.fr/investir-patrimoine-freelance'}
+                                >
+                                    On t&apos;aide à bien préparer ton avenir
+                                </Link>
                             </div>
                             <div className='flex flex-col items-start justify-start space-y-20 px-12'>
                                 <div className='flex flex-col w-full items-start justify-start space-y-4'>
                                     <div className='font-jekoblack'>Ressources</div>
-                                    <p className=''>Témoignages</p>
-                                    <p>Simuler mon revenu</p>
-                                    <p>Blog</p>
+                                    <Link className='font-jekobold text-[#484848] cursor-pointer' href={'https://hiway.fr/testimonials'}>
+                                        Témoignages
+                                    </Link>
+                                    <Link
+                                        className='font-jekobold text-[#484848] cursor-pointer'
+                                        href={'https://hiway.fr/simulateur?s=salarieClientFinal'}
+                                    >
+                                        Simuler mon revenu
+                                    </Link>
+                                    <Link className='font-jekobold text-[#484848] cursor-pointer' href={'/'}>
+                                        Blog
+                                    </Link>
                                 </div>
                                 <Link
                                     href={'https://hiway.fr/contact'}
@@ -159,7 +200,11 @@ export default function Footer() {
                         <Separator className='max-w-[90%] bg-[#C7C7C7]' />
                         <div className='w-full px-12'>
                             <div className={`flex ${isMobile && 'flex-col'} w-full items-center justify-between pt-8 px-12`}>
-                                <div className={`flex ${isMobile && 'flex-col'} items-center ${isMobile ? "space-y-4 justify-center text-center" : "space-x-8"} text-black font-jekobold text-sm`}>
+                                <div
+                                    className={`flex ${isMobile && 'flex-col'} items-center ${
+                                        isMobile ? 'space-y-4 justify-center text-center' : 'space-x-8'
+                                    } text-black font-jekobold text-sm`}
+                                >
                                     <Link href='https://hiway.fr/legal'>
                                         <div>Mentions légales</div>
                                     </Link>
@@ -174,7 +219,7 @@ export default function Footer() {
                                     </Link>
                                 </div>
 
-                                <div className={`flex items-center space-x-4 ${isMobile && "mt-8"}`}>
+                                <div className={`flex items-center space-x-4 ${isMobile && 'mt-8'}`}>
                                     <Link href='https://www.linkedin.com/company/hiwayfreelance/?originalSubdomain=fr'>
                                         <svg width='20' height='21' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                             <path
@@ -221,7 +266,7 @@ export default function Footer() {
                                 </div>
                             </div>
                         </div>
-                        <div className={`w-full ${!isMobile ? "px-24" : "text-center"} pt-4 text-xs font-light text-[#ADADAD]`}>
+                        <div className={`w-full ${!isMobile ? 'px-24' : 'text-center'} pt-4 text-xs font-light text-[#ADADAD]`}>
                             © Copyright 2024 Hiway. Tous droits réservés.
                         </div>
                     </div>
