@@ -174,9 +174,9 @@ export default function PostContent({
                                     <div className='w-full text-start'>
                                         <div className='flex flex-col w-full items-start justify-start'>
                                             {post.categories && <div className='text-sm text-[#ff4140] text-start'>{category.name}</div>}
-                                            <div className='font-black text-lg font-jekoblack text-start'>
+                                            <h2 className='font-black text-lg font-jekoblack text-start my-0'>
                                                 {he.decode(post.title.rendered)}
-                                            </div>
+                                            </h2>
                                             <span>{post.excerpt.protected}</span>
                                         </div>
                                     </div>

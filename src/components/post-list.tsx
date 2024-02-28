@@ -79,7 +79,7 @@ export default function PostList({ posts, categories }: { posts: PostWithMedia[]
                                 {post.categories && (
                                     <div className='text-sm text-[#ff4140] text-start'>{getCategoryName(post.categories)}</div>
                                 )}
-                                <div className='font-black text-lg font-jekoblack text-start'>{post && post.title ? he.decode(post.title.rendered) : ""}</div>
+                                <h2 className='font-black text-lg font-jekoblack text-start my-0'>{post && post.title ? he.decode(post.title.rendered) : ""}</h2>
                                 <span>{post && post.excerpt && post.excerpt.protected}</span>
                             </div>
                         </div>
