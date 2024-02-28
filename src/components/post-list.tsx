@@ -60,7 +60,7 @@ export default function PostList({ posts, categories }: { posts: PostWithMedia[]
                 }
                 return (
                     <Link
-                        href={`/posts/${post.slug}`}
+                        href={`/article/${post.slug}`}
                         className={'flex flex-col space-y-5 justify-start items-center h-full'}
                         key={post.id}
                     >

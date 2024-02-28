@@ -20,7 +20,7 @@ export default function MainPost({ post }: { post: PostWithMedia }) {
     };
 
     return (
-        <Link href={`/posts/${post.slug}`} className={'flex space-y-5 justify-start items-center w-full px-8 pt-12 pb-8'} key={post.id}>
+        <Link href={`/article/${post.slug}`} className={'flex space-y-5 justify-start items-center w-full px-8 pt-12 pb-8'} key={post.id}>
             <div className='relative rounded-xl min-w-[50%] h-full'>
                 <Image src={post.mediaUrl ? post.mediaUrl : '/work.png'} alt='post image' width={850} height={650} className='relative rounded-xl h-full' />
             </div>

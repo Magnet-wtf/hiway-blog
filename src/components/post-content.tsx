@@ -157,7 +157,7 @@ export default function PostContent({
                             filteredPosts.length > 0 &&
                             buildPostArray(filteredPosts).map((post) => (
                                 <Link
-                                    href={`/posts/${post.slug}`}
+                                    href={`/article/${post.slug}`}
                                     className={'flex flex-col space-y-5 justify-start items-center h-full'}
                                     key={post.id}
                                 >

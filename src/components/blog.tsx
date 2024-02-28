@@ -125,7 +125,7 @@ export default function Blog({ page = 1 }: { page?: number }) {
                                 <>
                                     <div className={'flex space-y-5 justify-start items-center w-full px-12 pb-12'} key={posts[0].id}>
                                         <Image src={'/work.png'} alt='post image' width={550} height={350} className='rounded-xl w-92' />
-                                        <Link href={`/posts/${posts[0].slug}`} className='max-w-xl ml-8'>
+                                        <Link href={`/article/${posts[0].slug}`} className='max-w-xl ml-8'>
                                             <h2 className='text-sm text-[#ff4140]'>Se lancer - Micro-entrepreneur</h2>
                                             <h1 className='text-6xl font-bold leading-[72px]'>
                                                 <span className='text-[#ff4140]'>{getTitleFirstWord(posts[0].title.rendered)}</span>{' '}
@@ -140,7 +140,7 @@ export default function Blog({ page = 1 }: { page?: number }) {
                                             posts.map((post) => (
                                                 <div className={'flex flex-col space-y-5 justify-center items-center'} key={post.id}>
                                                     <Image src={post.mediaUrl} alt='post image' width={400} height={400} />
-                                                    <Link href={`/posts/${post.slug}`} className='max-w-sm'>
+                                                    <Link href={`/article/${post.slug}`} className='max-w-sm'>
                                                         <h2 className='text-sm text-[#ff4140]'>Se lancer - Micro-entrepreneur</h2>
                                                         <h2 className='font-bold text-lg'>{post.title.rendered}</h2>
                                                         <span>{post.excerpt.protected}</span>
