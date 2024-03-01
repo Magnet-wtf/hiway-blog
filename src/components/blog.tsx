@@ -186,7 +186,7 @@ export default function Blog({ page = 1 }: { page?: number }) {
                         <div className='w-full rounded-xl bg-[#F6F6F6]'>
                             <div className='grid grid-cols-3 h-full p-24 min-h-[507px] w-full justify-items-center'>
                                 <div className='flex flex-col items-start justify-start text-left h-full w-full'>
-                                    <Image src={'/logo-big.png'} alt='icon' width={100} height={100} />
+                                    <Image src={'/logo-hiway.svg'} alt='icon' width={100} height={100} />
                                     <h1 className='text-2xl font-semibold leading-24 mt-8'>
                                         La meilleure expérience <br />
                                         pour devenir freelance

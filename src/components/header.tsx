@@ -33,7 +33,7 @@ export default function Header({ categories, tags }: { categories: WP_REST_API_T
                     </Button>
                 )}
                 <Link href='/' className='pl-[42px]'>
-                    <Image src='/logo-big.png' alt='logo' width={60} height={60} />
+                    <Image src='/logo-hiway.svg' alt='logo' width={60} height={60} />
                 </Link>
                 {!isMobile ? (
                     <div className='flex space-x-4 items-center'>

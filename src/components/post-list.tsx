@@ -48,7 +48,7 @@ export default function PostList({ posts, categories }: { posts: PostWithMedia[]
                                 href={'https://hiway.fr'}
                                 className='flex flex-col w-full h-full items-center justify-center rounded-xl border-4 border-[#f6f6f6] py-4 cursor-pointer'
                             >
-                                <Image src={'/logo-big.png'} alt='post image' width={70} height={70} className='rounded-xl pb-8' />
+                                <Image src={'/logo-hiway.svg'} alt='post image' width={70} height={70} className='rounded-xl pb-8' />
                                 <div className='text-2xl font-bold font-jekobold pb-4 text-center px-8'>
                                     La meilleure expérience pour <br />
                                     <span className='text-[#ff4140] font-jekobold'>devenir freelance</span>

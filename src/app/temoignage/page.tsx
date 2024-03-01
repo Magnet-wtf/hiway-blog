@@ -12,7 +12,7 @@ export default function Temoignage() {
                         Freelance <br /> Walk
                     </h1>
                     <div className='flex font-bold text-white items-center justify-center mt-4'>
-                        par <Image className='ml-4' src={'/logo-big.png'} alt='logo' width={60} height={60} />
+                        par <Image className='ml-4' src={'/logo-hiway.svg'} alt='logo' width={60} height={60} />
                     </div>
                     <p className='text-white font-light text-lg mt-12 max-w-xl'>
                         Ils sont freelances depuis 1 an, 5 ans, 10 ans ou plus. Ils ont tous un parcours exceptionnel et des tonnes de

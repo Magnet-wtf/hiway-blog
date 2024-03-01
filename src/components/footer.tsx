@@ -85,7 +85,7 @@ export default function Footer() {
                     {isMobile ? (
                         <div className={`flex flex-col justify-center items-center ${isMobile ? 'p-4' : 'p-12'} w-full`}>
                             <div className='flex flex-col items-start justify-start text-left h-full w-full'>
-                                <Image src={'/logo-big.png'} alt='icon' width={100} height={100} />
+                                <Image src={'/logo-hiway.svg'} alt='icon' width={100} height={100} />
                                 <div className='text-2xl font-jekoblack leading-24 mt-8'>
                                     La meilleure expérience pour devenir freelance
                                 </div>
@@ -141,7 +141,7 @@ export default function Footer() {
                     ) : (
                         <div className='grid grid-cols-3 h-full p-24 min-h-[507px] w-full justify-items-center'>
                             <div className='flex flex-col items-start justify-start text-left h-full w-full'>
-                                <Image src={'/logo-big.png'} alt='icon' width={100} height={100} />
+                                <Image src={'/logo-hiway.svg'} alt='icon' width={100} height={100} />
                                 <div className='text-2xl font-jekoblack leading-24 mt-8'>
                                     La meilleure expérience <br />
                                     pour devenir freelance
