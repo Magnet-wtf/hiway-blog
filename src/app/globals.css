@@ -167,7 +167,7 @@ pre {
 }
 
 #hubspotForm {
-  .input {
+  .input .hs-input {
     @apply border border-border;
     @apply rounded-xl;
     @apply p-2;
