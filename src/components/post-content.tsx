@@ -104,11 +104,11 @@ export default function PostContent({
         <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? 'px-24' : 'px-8'} py-12`} id='toPDF'>
             <DialogForm />
             <div className={'flex flex-col space-y-2'}>
-                <div className='flex space-x-4 mb-4'>
+                <div className='flex space-x-4 mb-4 exclude-from-pdf'>
                     {category && (
                         <Link
                             href={`/category/${category.slug}`}
-                            className='bg-[#FDB813] rounded-full text-black hover:bg-white border-2 border-[#fdb814] font-jekobold py-2 px-2'
+                            className='bg-[#FDB813] rounded-full text-black hover:bg-white border-2 border-[#fdb814] font-jeko py-2.5 px-6 flex items-center justify-center'
                         >
                             {category?.name}
                         </Link>
@@ -116,7 +116,7 @@ export default function PostContent({
                     {tag.name && (
                         <Link
                             href={`/tag/${tag.slug}`}
-                            className='bg-[#FDB813] rounded-full text-black hover:bg-white border-2 border-[#fdb814] font-jekobold py-2 px-2'
+                            className='bg-[#FDB813] rounded-full text-black hover:bg-white border-2 border-[#fdb814] font-jeko py-2.5 px-6 flex items-center justify-center'
                         >
                             {tag?.name}
                         </Link>
@@ -138,7 +138,7 @@ export default function PostContent({
                     | Temps de lecture : {readingTime(post.content.rendered)} minutes
                 </div>
             </div>
-            <div className='max-w-[800px]'>
+            <div className='max-w-[800px] expand-for-pdf'>
                 <Image
                     src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
                     alt='post image'
@@ -151,7 +151,7 @@ export default function PostContent({
 
                 <CTA />
 
-                <div className='w-full flex flex-col items-center justify-center mt-12'>
+                <div className='w-full flex flex-col items-center justify-center mt-12 exclude-from-pdf'>
                     {isCommentSent ? (
                         <div>Merci pour ton commentaire, il est en attente de modération</div>
                     ) : (
@@ -198,7 +198,7 @@ export default function PostContent({
                     )}
                 </div>
 
-                <div className='w-full flex flex-col items-center justify-center mt-24'>
+                <div className='w-full flex flex-col items-center justify-center mt-24 exclude-from-pdf'>
                     <div className='font-jekobold text-black text-4xl'>
                         Autres articles sur le sujet <span className='text-[#ff4140] font-jekobold'>{category.name}</span>
                     </div>

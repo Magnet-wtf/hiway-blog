@@ -8,7 +8,7 @@ import { isMobile } from 'react-device-detect';
 export default function CTA() {
     return (
         <div
-            className={`w-full bg-[#3C68FF] rounded-xl min-h-[150px] ${
+            className={`w-full bg-[#3C68FF] rounded-xl min-h-[150px] exclude-from-pdf ${
                 isMobile ? 'px-4 pb-8' : 'px-12'
             } flex items-center justify-center mt-12`}
         >

@@ -188,3 +188,6 @@ pre {
     @apply cursor-pointer;
   }
 }
+
+.hidden { display: none !important; }
+.expanded { min-width: 100% !important; }

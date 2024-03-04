@@ -10,46 +10,75 @@ import { jsPDF } from 'jspdf';
 
 export default function DialogForm() {
     const [open, setOpen] = useAtom(openDialog);
+    const [loading, setLoading] = useState(false);
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
+        setLoading(true);
         console.log('Form submitted');
-        const rootElementId = 'toPDF';
+        const rootElementId = 'toPDF'; // ID of the element to convert to PDF
         const input = document.getElementById(rootElementId);
+        if (!input) return; // Ensure the element exists
 
-        if (!input) {
-            return;
-        }
+        // Hide elements that shouldn't be in the PDF
+        const elementsToExclude = input.querySelectorAll('.exclude-from-pdf');
+        elementsToExclude.forEach((el) => el.classList.add('hidden'));
 
-        const padding = 10; // Padding in mm
+        // Expand elements for the PDF
+        const elementToUpdate = input.querySelectorAll('.expand-for-pdf');
+        elementToUpdate.forEach((el) => el.classList.add('expanded'));
 
-        html2canvas(input).then((canvas) => {
-            const imgWidth = 210; // A4 width in mm
-            const pageHeight = 295;  // A4 height in mm, adjust padding here
-            const imgHeight = canvas.height * imgWidth / canvas.width;
-            let heightLeft = imgHeight;
-    
-            const doc = new jsPDF('p', 'mm');
-            let position = 0;
-    
-            // Add first page
-            doc.addImage(canvas.toDataURL('image/png'), 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight - padding; // Subtract padding from the first page
-    
-            // Add new pages if the content overflows
-            while (heightLeft >= 0) {
-                position = (heightLeft - imgHeight) - padding; // Adjust position by padding for subsequent pages
-                doc.addPage();
-                doc.addImage(canvas.toDataURL('image/png'), 'PNG', 0, position, imgWidth, imgHeight);
-                heightLeft -= (pageHeight - padding); // Adjust for padding on each new page
-            }
-    
-            doc.save('download.pdf');
+        // Generate the canvas with html2canvas
+        const canvas = await html2canvas(input, {
+            scale: 2, // Improves the resolution
+            useCORS: true, // Allows loading of external resources
+            scrollY: -window.scrollY, // Adjusts for current scroll position
+            windowHeight: document.documentElement.offsetHeight, // Ensures the full height is captured
         });
+
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+
+        // Margin and document dimensions
+        const margin = 20; // Margin for top, right, and bottom
+        const pdfWidth = pdf.internal.pageSize.getWidth() - 2 * margin; // Width after accounting for margins
+        const pdfHeight = pdf.internal.pageSize.getHeight() - margin * 2; // Height after accounting for margins
+
+        // Image dimensions
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+
+        let heightLeft = (imgHeight * pdfWidth) / imgWidth; // Scaled height of the image
+
+        let position = margin; // Initial Y position with top margin
+
+        // Add content to PDF, page by page
+        do {
+            // Draw part of the image on the current page
+            pdf.addImage(imgData, 'PNG', margin, position, pdfWidth, heightLeft - position + margin, undefined, 'FAST');
+
+            // Calculate remaining height
+            heightLeft -= pdfHeight;
+
+            if (heightLeft > 0) {
+                // Add a new page if there's content left
+                pdf.addPage();
+                position = -pdfHeight + 2 * margin; // Adjust position for the next slice, considering top margin
+            }
+        } while (heightLeft > 0);
+
+        pdf.save('article.pdf');
+
+        // Show hidden elements again
+        elementsToExclude.forEach((el) => el.classList.remove('hidden'));
+        elementToUpdate.forEach((el) => el.classList.remove('expanded'));
+
+        setLoading(false);
+        setOpen(false);
     };
     return (
         <Dialog open={open} onOpenChange={() => setOpen(!open)}>
             <DialogContent>
-                <HubSpotForm onSubmit={onSubmit} />
+                <HubSpotForm onSubmit={onSubmit} loading={loading} />
             </DialogContent>
         </Dialog>
     );
