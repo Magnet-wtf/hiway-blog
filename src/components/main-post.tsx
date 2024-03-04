@@ -5,9 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { isMobile } from 'react-device-detect';
 import he from 'he';
+import { useAtomValue } from 'jotai';
+import { searchAtom } from '@/store';
 
 export default function MainPost({ post }: { post: PostWithMedia }) {
-    if (isMobile) {
+    const search = useAtomValue(searchAtom);
+
+    if (isMobile || search !== '') {
         return null;
     }
 

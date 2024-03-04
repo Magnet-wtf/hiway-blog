@@ -15,6 +15,7 @@ interface HomePageParams {
 export default function Home({ searchParams }: HomePageParams) {
     const page = searchParams.page ? parseInt(searchParams.page) : 1;
     const { posts, totalPages } = use(wpService.getPosts({ page }));
+    const { posts: allPosts } = use(wpService.getPosts());
     const categories = use(wpService.getCategories());
     const tags = use(wpService.getTags());
 
@@ -30,7 +31,7 @@ export default function Home({ searchParams }: HomePageParams) {
                         <>
                             <MainPost post={posts[0]} />
 
-                            <PostList posts={posts} categories={categories} />
+                            <PostList posts={posts} categories={categories} allPosts={allPosts} />
                         </>
                     )}
 

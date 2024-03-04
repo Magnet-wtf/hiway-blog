@@ -1,5 +1,7 @@
 "use client"
 
+import { searchAtom } from "@/store";
+import { useAtomValue } from "jotai";
 import Link from "next/link";
 import { isMobile } from "react-device-detect";
 
@@ -10,9 +12,14 @@ export function PaginationLinks({
     currentPage: number;
     totalPages: number;
 }>) {
+    const search = useAtomValue(searchAtom);
     const pagesArray = Array(totalPages)
         .fill(null)
         .map((_, page) => page + 1);
+
+    if(search !== '') {
+        return null;
+    }
 
     return (
         <div className={`flex space-x-4 w-full items-center justify-center pt-8 ${isMobile && "px-4 pt-12"}`}>

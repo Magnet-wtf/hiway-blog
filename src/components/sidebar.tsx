@@ -1,4 +1,6 @@
 'use client';
+import { searchAtom } from '@/store';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import Link from 'next/link';
 import { isMobile } from 'react-device-detect';
@@ -15,6 +17,8 @@ export default function Sidebar({
     selectedTag: WP_REST_API_Term | null;
     selectedCategory: WP_REST_API_Term | null;
 }) {
+    const [search, setSearch] = useAtom(searchAtom);
+
     if (isMobile) {
         return null;
     }
@@ -32,6 +36,8 @@ export default function Sidebar({
                     type='search'
                     name='search'
                     placeholder='Rechercher'
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
                 <button type='submit' className='absolute right-0 top-0 mt-5 mr-4'>
                     <svg

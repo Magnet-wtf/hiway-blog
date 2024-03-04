@@ -21,6 +21,7 @@ interface PostPageParams {
 
 function TagsPage({ params }: PostPageParams) {
     const { posts, totalPages } = use(wpService.getPosts());
+    const { posts: allPosts } = use(wpService.getPosts());
     const categories = use(wpService.getCategories());
     const tags = use(wpService.getTags());
 
@@ -41,7 +42,7 @@ function TagsPage({ params }: PostPageParams) {
                     <MobileHeader />
 
                     {filteredPosts && filteredPosts.length > 0 && <MainPost post={filteredPosts[0]} />}
-                    {filteredPosts && filteredPosts.length > 1 && <PostList posts={filteredPosts} categories={categories} />}
+                    {filteredPosts && filteredPosts.length > 1 && <PostList posts={filteredPosts} categories={categories} allPosts={allPosts} />}
                 </div>
             </div>
         </div>
