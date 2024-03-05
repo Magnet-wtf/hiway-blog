@@ -35,6 +35,21 @@ export default function PostContent({
 
     const generateIdFromText = (text: any) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
+    const extractTextContent = (children: any) => {
+        let textContent = '';
+        const extract = (nodes: any) => {
+            nodes.forEach((node: any) => {
+                if (node.type === 'text') {
+                    textContent += node.data;
+                } else if (node.type === 'tag') {
+                    extract(node.children);
+                }
+            });
+        };
+        extract(children);
+        return textContent;
+    };
+
     const constructContentWithImage = (htmlContent: any) => {
         let firstParagraphFound = false;
 
@@ -62,7 +77,7 @@ export default function PostContent({
 
                 // Adding IDs to h2 tags
                 if (domNode.type === 'tag' && domNode.name === 'h2') {
-                    const textContent = domToReact(domNode.children, options).toString();
+                    const textContent = extractTextContent(domNode.children);
                     const id = generateIdFromText(textContent);
                     return (
                         <h2 id={id}>
