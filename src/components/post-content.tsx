@@ -145,6 +145,8 @@ export default function PostContent({
         }
     }, [currentHeadingId]); // React to changes in the currentHeadingId
 
+    console.log('currentHeadingId', currentHeadingId)
+
     return (
         <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? 'px-24' : 'px-8'} py-12`} id='toPDF'>
             <DialogForm />
