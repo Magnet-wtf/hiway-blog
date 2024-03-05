@@ -1,10 +1,17 @@
 'use client';
 
+import { currentHeadingIdAtom } from "@/store";
+import { useAtom } from "jotai";
+
 interface PostSummaryProps {
     post: any;
 }
 
 export default function PostSummary({ post }: PostSummaryProps) {
+    const [currentHeadingId, setCurrentHeadingId] = useAtom(currentHeadingIdAtom);
+
+    const generateIdFromText = (text: any) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
     function extractHeadingsInOrder(html: string): string[] {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -29,7 +36,7 @@ export default function PostSummary({ post }: PostSummaryProps) {
     return (
         <div className={'flex flex-col space-y-4'}>
             {extractHeadingsInOrder(post.content.rendered).map((title, index) => (
-                <a href={`#${title}`} key={index} className={`${index === 0 ? "text-[#FF4140] font-jekobold" : "text-black"}`}>
+                <a onClick={() => setCurrentHeadingId(generateIdFromText(title))} key={index} className={`${currentHeadingId === generateIdFromText(title) ? "text-[#FF4140] font-jekobold" : "text-black"} cursor-pointer hover:text-[#FF4140]`}>
                     {title}
                 </a>
             ))}

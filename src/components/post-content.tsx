@@ -12,10 +12,12 @@ import parse, { domToReact } from 'html-react-parser';
 import he from 'he';
 import { WP_REST_API_Term } from 'wp-types';
 import { isMobile } from 'react-device-detect';
-import { createRef, useCallback, useRef, useState } from 'react';
+import { createRef, useCallback, useEffect, useRef, useState } from 'react';
 import DialogForm from './form-dialog';
 import Axios from 'axios';
 import wpService from '@/lib/wordpress/wp-service';
+import { useAtomValue } from 'jotai';
+import { currentHeadingIdAtom } from '@/store';
 
 export default function PostContent({
     post,
@@ -28,8 +30,11 @@ export default function PostContent({
     tag: WP_REST_API_Term;
     filteredPosts: PostWithMedia[];
 }) {
-    const [firstParagraphPassed, setFirstParagraphPassed] = useState(false);
+    
     const [isCommentSent, setIsCommentSent] = useState(false);
+
+    const generateIdFromText = (text: any) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
     const constructContentWithImage = (htmlContent: any) => {
         let firstParagraphFound = false;
 
@@ -52,6 +57,17 @@ export default function PostContent({
                                 />
                             </div>
                         </>
+                    );
+                }
+
+                // Adding IDs to h2 tags
+                if (domNode.type === 'tag' && domNode.name === 'h2') {
+                    const textContent = domToReact(domNode.children, options).toString();
+                    const id = generateIdFromText(textContent);
+                    return (
+                        <h2 id={id}>
+                            {domToReact(domNode.children)}
+                        </h2>
                     );
                 }
             },
@@ -117,6 +133,17 @@ export default function PostContent({
         let response = await wpService.postComment(post.id, fields.author_name, fields.author_email, fields.content);
         console.log(response);
     }, []);
+
+    const currentHeadingId = useAtomValue(currentHeadingIdAtom);
+
+    useEffect(() => {
+        if (currentHeadingId) {
+            const element = document.getElementById(currentHeadingId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    }, [currentHeadingId]); // React to changes in the currentHeadingId
 
     return (
         <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? 'px-24' : 'px-8'} py-12`} id='toPDF'>
