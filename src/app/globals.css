@@ -170,7 +170,7 @@ blockquote {
   padding: 10px 20px; /* Adjusts the padding around the text */
   margin: 20px 0; /* Adds space above and below the blockquote */
   position: relative; /* Required for positioning the bar */
-  background-color: #f9f9f9; /* Light background color for the blockquote, change as needed */
+  background-color: #fff; /* Light background color for the blockquote, change as needed */
   font-style: italic; /* Makes the text italic */
   border-left: 5px solid #ff4140; /* Adds a bar on the left, change color as needed */
 }
