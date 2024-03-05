@@ -89,13 +89,13 @@ export default function Sidebar({
 
                 <div className='flex flex-col space-y-2 mb-8'>
                     <div className='flex text-sm items-center'>
-                        <Image src={'/rocket.png'} alt='icon' width={24} height={24} className='mr-2' /> On t’aide à te lancer
+                        <Image src={'/fuse.png'} alt='icon' width={24} height={24} className='mr-2' /> On t’aide à te lancer
                     </div>
                     <div className='flex text-sm items-center'>
-                        <Image src={'/glass.png'} alt='icon' width={24} height={24} className='mr-2' /> On gère ta société pour toi
+                        <Image src={'/loop.png'} alt='icon' width={24} height={24} className='mr-2' /> On gère ta société pour toi
                     </div>
                     <div className='flex text-sm items-center'>
-                        <Image src={'/plant.png'} alt='icon' width={24} height={24} className='mr-2' /> On t’aide à préparer l’avenir
+                        <Image src={'/fleur.png'} alt='icon' width={24} height={24} className='mr-2' /> On t’aide à préparer l’avenir
                     </div>
                 </div>
                 <Link

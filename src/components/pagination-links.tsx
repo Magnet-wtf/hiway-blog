@@ -18,7 +18,7 @@ export function PaginationLinks({
         .map((_, page) => page + 1);
 
     if(search !== '') {
-        return null;
+        return null;    
     }
 
     return (
