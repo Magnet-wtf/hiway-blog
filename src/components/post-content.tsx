@@ -28,24 +28,42 @@ export default function PostContent({
     tag: WP_REST_API_Term;
     filteredPosts: PostWithMedia[];
 }) {
+    const [firstParagraphPassed, setFirstParagraphPassed] = useState(false);
     const [isCommentSent, setIsCommentSent] = useState(false);
-    const options = {
-        replace({ attribs, children }: any) {
-            if (!attribs) {
-                return;
-            }
+    const constructContentWithImage = (htmlContent: any) => {
+        let firstParagraphFound = false;
 
-            if (attribs.id === 'h2') {
-                return <div style={{ fontSize: 42 }}>{domToReact(children, options)}</div>;
-            }
+        // Custom replace logic for html-react-parser
+        const options = {
+            replace: (domNode: any) => {
+                if (domNode.type === 'tag' && domNode.name === 'p' && !firstParagraphFound) {
+                    firstParagraphFound = true; // Mark the first paragraph as found
+                    // Return a fragment with the paragraph and the image
+                    return (
+                        <>
+                            {domToReact(domNode.children)}
+                            <div style={{ margin: '20px 0' }}>
+                                <Image
+                                    src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                    alt='Post image'
+                                    width={600}
+                                    height={400}
+                                    className='rounded-xl my-12'
+                                />
+                            </div>
+                        </>
+                    );
+                }
+            },
+        };
 
-            if (attribs.class === 'prettify') {
-                return <span style={{ color: 'hotpink' }}>{domToReact(children, options)}</span>;
-            }
-        },
+        return parse(htmlContent, options);
     };
 
-    const parsedContent = post ? parse(he.decode(post.content.rendered)) : null;
+    // Decode HTML entities in post content and prepare for rendering
+    const decodedContent = he.decode(post.content.rendered);
+    const parsedContent = post ? constructContentWithImage(decodedContent) : null;
+
 
     const parsedDate = post ? new Date(post.date) : null;
 
@@ -139,13 +157,6 @@ export default function PostContent({
                 </div>
             </div>
             <div className='max-w-[800px] expand-for-pdf'>
-                <Image
-                    src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
-                    alt='post image'
-                    width={600}
-                    height={400}
-                    className='rounded-xl mb-12'
-                />
                 {/* <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} /> */}
                 {parsedContent}
 
