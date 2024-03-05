@@ -30,10 +30,13 @@ export default function PostContent({
     tag: WP_REST_API_Term;
     filteredPosts: PostWithMedia[];
 }) {
-    
     const [isCommentSent, setIsCommentSent] = useState(false);
 
-    const generateIdFromText = (text: any) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const generateIdFromText = (text: any) =>
+        text
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
 
     const extractTextContent = (children: any) => {
         let textContent = '';
@@ -52,38 +55,61 @@ export default function PostContent({
 
     const constructContentWithImage = (htmlContent: any) => {
         let firstParagraphFound = false;
+        let insideBlockquote = false;
 
         // Custom replace logic for html-react-parser
         const options = {
             replace: (domNode: any) => {
-                if (domNode.type === 'tag' && domNode.name === 'p' && !firstParagraphFound) {
-                    firstParagraphFound = true; // Mark the first paragraph as found
-                    // Return a fragment with the paragraph and the image
-                    return (
-                        <>
-                            {domToReact(domNode.children)}
-                            <div style={{ margin: '20px 0' }}>
-                                <Image
-                                    src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
-                                    alt='Post image'
-                                    width={600}
-                                    height={400}
-                                    className='rounded-xl my-12'
-                                />
-                            </div>
-                        </>
-                    );
+                if (domNode.type === 'tag' && domNode.name === 'blockquote') {
+                    insideBlockquote = true;
+                    // Process the children of the blockquote, looking for the first paragraph
+                    const blockquoteChildren = domToReact(domNode.children, options);
+                    insideBlockquote = false; // Reset for next blockquote
+
+                    // If the first paragraph was found inside this blockquote, append the image
+                    if (firstParagraphFound) {
+                        return (
+                            <>
+                                <blockquote>{blockquoteChildren}</blockquote>
+                                <div style={{ margin: '20px 0' }}>
+                                    <Image
+                                        src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                        alt='Post image'
+                                        width={600}
+                                        height={400}
+                                        className='rounded-xl my-12'
+                                    />
+                                </div>
+                            </>
+                        );
+                    } else {
+                        return <blockquote>{blockquoteChildren}</blockquote>;
+                    }
                 }
 
-                // Adding IDs to h2 tags
-                if (domNode.type === 'tag' && domNode.name === 'h2') {
-                    const textContent = extractTextContent(domNode.children);
-                    const id = generateIdFromText(textContent);
-                    return (
-                        <h2 id={id}>
-                            {domToReact(domNode.children)}
-                        </h2>
-                    );
+                if (!firstParagraphFound && domNode.type === 'tag' && domNode.name === 'p') {
+                    firstParagraphFound = true; // Mark the first paragraph as found
+
+                    if (!insideBlockquote) {
+                        // Return paragraph with image immediately after if not inside a blockquote
+                        return (
+                            <>
+                                {domToReact(domNode.children)}
+                                <div style={{ margin: '20px 0' }}>
+                                    <Image
+                                        src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                        alt='Post image'
+                                        width={600}
+                                        height={400}
+                                        className='rounded-xl my-12'
+                                    />
+                                </div>
+                            </>
+                        );
+                    } else {
+                        // If inside a blockquote, just return the paragraph, image will be appended after the blockquote
+                        return domToReact(domNode.children);
+                    }
                 }
             },
         };
@@ -94,7 +120,6 @@ export default function PostContent({
     // Decode HTML entities in post content and prepare for rendering
     const decodedContent = he.decode(post.content.rendered);
     const parsedContent = post ? constructContentWithImage(decodedContent) : null;
-
 
     const parsedDate = post ? new Date(post.date) : null;
 
@@ -160,7 +185,7 @@ export default function PostContent({
         }
     }, [currentHeadingId]); // React to changes in the currentHeadingId
 
-    console.log('currentHeadingId', currentHeadingId)
+    console.log('currentHeadingId', currentHeadingId);
 
     return (
         <div className={`flex flex-col w-full justify-center space-y-4 ${!isMobile ? 'px-24' : 'px-8'} py-12`} id='toPDF'>
