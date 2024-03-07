@@ -85,7 +85,7 @@ export default function PostList({
                                     <div className='w-full relative'>
                                         <div className='absolute inset-0 bg-[#ff4140] opacity-0 hover:opacity-50 transition-opacity'></div>
                                         <Image
-                                            src={post.mediaUrl ? post.mediaUrl : '/default-image.png'}
+                                            src={post._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url || '/default-image.png'}
                                             alt='post image'
                                             className='w-full'
                                             width={400}
