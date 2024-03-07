@@ -34,7 +34,7 @@ export default class WpClient {
         const queryParams = this.queryString({
             ...DEFAULT_POSTS_PARAMS,
             ...params,
-        });
+        }) + '&_embed';
 
         const url = `${BASE_URL}posts${queryParams}`;
         const response = await fetch(url);
