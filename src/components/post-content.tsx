@@ -111,6 +111,16 @@ export default function PostContent({
                         return domToReact(domNode.children);
                     }
                 }
+
+                if (domNode.type === 'tag' && domNode.name === 'h2') {
+                    const textContent = extractTextContent(domNode.children);
+                    const id = generateIdFromText(textContent);
+                    return (
+                        <h2 id={id}>
+                            {domToReact(domNode.children)}
+                        </h2>
+                    );
+                }
             },
         };
 
