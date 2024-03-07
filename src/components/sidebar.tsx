@@ -25,7 +25,7 @@ export default function Sidebar({
 
     return (
         <div className={'flex flex-col left-0 pr-8 pl-12 pt-20 w-[350px] border-r'}>
-            <h1 className={'text-2xl xl:text-4xl font-bold leading-[52.5px] font-jekoblack'}>
+            <h1 className={'text-2xl xl:text-4xl font-bold xl:leading-[42px] leading-[2rem] font-jekoblack'}>
                 <span className='text-[#FF4140] font-jekoblack'>Bienvenue</span> <br /> sur le blog <br /> Hiway
             </h1>
             <p className={'text-sm mt-4 text-[#979797]'}>Tout ce qu’il faut savoir pour vivre sa meilleure vie de freelance</p>
