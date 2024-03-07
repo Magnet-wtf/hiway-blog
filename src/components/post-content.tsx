@@ -171,7 +171,6 @@ export default function PostContent({
         e.preventDefault();
         setIsCommentSent(true);
         let response = await wpService.postComment(post.id, fields.author_name, fields.author_email, fields.content);
-        console.log(response);
     }, []);
 
     const currentHeadingId = useAtomValue(currentHeadingIdAtom);
